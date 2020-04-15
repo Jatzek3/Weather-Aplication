@@ -18,7 +18,7 @@ header {
 
 a:link {
     text-decoration: none;
-    font-family: GentiumBookBasic;
+    font-family: 'GentiumBookBasic';
     font-weight: bold;
     font-size: 21px;
     color: rgba(255,255,255,255);
@@ -27,7 +27,7 @@ a:link {
 }
 .ulContainer a:visited {
     text-decoration: none;
-    font-family: GentiumBookBasic;
+    font-family: 'GentiumBookBasic';
     font-weight: bold;
     font-size: 21px;
     color:rgba(255,255,255,255) ;
@@ -102,23 +102,24 @@ a:link {
 
 }
 .top-item3{
-    background-color: blue;
-    font-family: Lato;
+    font-family: 'Lato';
     font-size: 18px;
     color: rgba(255,255,255,255);
     align-self: center;
     justify-self: end ;
+    position: relative;
+    left: -75px;
+    top: 50px;
 
 }
 .top-item4{
-    background-color: brown;
-    font-family: Lato;
+    font-family: 'Lato';
     font-size: 18px;
     color: rgba(255,255,255,255);
     align-self: center;
-    justify-self: start;
-
-
+    position: relative;
+    left: 75px;
+    top: 50px;
 
 }
 
@@ -150,7 +151,10 @@ a:link {
     grid-row: 4;
     font-family: Lato;
     font-size: 16px;
+    width: 90%;
     color: rgba(76,76,76,255);
+    border: 30px;
+    line-height: 30px;
 }
 .JTRFitem4 {
     grid-row: 5;
@@ -170,7 +174,9 @@ a:link {
     grid-template-columns: 50% 550px 1fr;
     grid-template-rows: 1fr 500px 1fr;
     height:750px;
+
 }
+
 .ingredients-container {
     grid-column: 2;
     grid-row: 2;
@@ -181,18 +187,40 @@ a:link {
     align-items: center ;
 
 }
+.ingredients-item1 {
+    font-family: 'YesevaOne';
+    font-size: 	36px;
+    color: rgba(255,255,255,255);
+}
+.ingredients-item3{
+    font-family: 'Lato';
+    font-size: 	16px;
+    color: rgba(255,255,255,255);
+    width: 80%;
+    line-height: 25px;
+}
 .ingredients-item4{
     display: flex;
+    justify-content: space-around;
 
 }
 .ingredients-item4 img {
-    border: 2px solid red;
+    border: 2px solid gray;
     background-color: #FFFFFF;
     height: 100px;
     border-radius:50%;
     width: 100px;
 }
 
+.ingredients-item4-first{
+    position: relative;
+    left: -50px;
+}
+
+.ingredients-item4-third{
+    position: relative;
+    left: 50px;
+}
 
 /* .ingredients-item0{
     grid-row: 1/-1;
@@ -273,6 +301,19 @@ a:link {
     color: white;
     display: flex;
     flex-direction: column;
+
+}
+.guest-reviews-item1{
+    font-family: 'YesevaOne';
+    font-size: 36px;
+    color: rgba(255,255,255,255);
+}
+
+.guest-reviews-item3{
+    font-family: 'GentiumBookBasic';
+    font-weight: bold;
+    font-size: 25px;
+    color: rgba(255,255,255,255);
 }
 
 
@@ -281,6 +322,8 @@ a:link {
     grid-template-columns: 1fr 25% 25% 550px 1fr;
     grid-template-rows:1f 550px 1fr;
     height: 750px;
+    align-content: center;
+    justify-content: center;
 
 }
 .JTRF2-item1{
@@ -294,6 +337,14 @@ a:link {
 .JTRF2-item2 {
     grid-column: 3;
     grid-row: 2;
+
+
+}
+.JTRF2-item3 {
+    font-family: 'Yeseva One', cursive;
+    font-size: 36px;
+    color: rgba(204,153,0,255);
+    
 
 
 }
