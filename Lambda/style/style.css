@@ -94,6 +94,7 @@ a:link {
     font-size: 90px;
     align-self: center;
     justify-self: center;
+    text-align: center;
 }
 .top-item2{
     grid-column: span 2;
@@ -108,8 +109,15 @@ a:link {
     align-self: center;
     justify-self: end ;
     position: relative;
-    left: -75px;
-    top: 50px;
+    left: -50px;
+    top: 25px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
 
 }
 .top-item4{
@@ -118,8 +126,15 @@ a:link {
     color: rgba(255,255,255,255);
     align-self: center;
     position: relative;
-    left: 75px;
-    top: 50px;
+    left: 50px;
+    top: 25px;
+    background-color: rgba(255,255,255, 0.3);
+    border: none;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
 
 }
 
@@ -158,6 +173,7 @@ a:link {
     color: rgba(76,76,76,255);
     border: 30px;
     line-height: 30px;
+    text-align: center;
 }
 .JTRFitem4 {
     grid-row: 5;
@@ -203,6 +219,7 @@ a:link {
     color: rgba(255,255,255,255);
     width: 80%;
     line-height: 25px;
+    text-align: center;
 }
 .ingredients-item4{
     display: flex;
@@ -260,22 +277,31 @@ a:link {
     grid-template-columns: 1fr 500px 1fr 500px 1fr;
     font-family: 'Lato', sans-serif;
     background-image: url(../images/Section_Background_2.png);
+    height: 1000px;
 }
 .menu-item1{
     grid-row: 2;
     grid-column: 2;
+    position: relative;
+    top: -100px;
 }
 .menu-item2 {
     grid-row: 3;
     grid-column: 2;
+    position: relative;
+    top: -100px;
 }
 .menu-item3 {
     grid-column: 4;
     grid-row: 2;
+    position: relative;
+    top: -100px;
 }
 .menu-item4 {
     grid-column: 4;
     grid-row: 3;
+    position: relative;
+    top: -200px;
 }
 
 .menu-container h2 {
@@ -288,7 +314,7 @@ a:link {
 .tzatzyki-box {
     display: flex;
     flex-wrap: wrap;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', italic;
 
 }
 .water-image {
@@ -303,12 +329,16 @@ a:link {
     text-align: left;
     color: rgba(204,153,0,255);
 
+    border-bottom: 1px inset rgba(204,153,0,0.4);
+
 }
 .second-item {
     width: 66%;
     font-size: 21px;
     text-align: end;
+
     color: rgba(204,153,0,255);
+    border-bottom: 1px inset rgba(204,153,0,0.4);
 }
 .third-item{
     font-size: 16px;
@@ -347,6 +377,7 @@ a:link {
     font-size: 25px;
     color: rgba(255,255,255,255);
     width: 75%;
+    text-align: center;
 }
 
 
@@ -354,9 +385,10 @@ a:link {
     display: grid;
     grid-template-columns: 1fr 25% 25% 550px 1fr;
     grid-template-rows:1f 550px 1fr;
-    height: 750px;
+    height: 700px;
     align-content: center;
     justify-content: center;
+    background-image: url(../images/Section_Background.png);
 
 }
 .JTRF2-item1{
@@ -377,10 +409,79 @@ a:link {
     font-family: 'Yeseva One', cursive;
     font-size: 36px;
     color: rgba(204,153,0,255);
-    
-
-
+    text-align: center;
+    align-self: start;
 }
+.JTRF2-item4{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.JTRF2-item5{
+    font-family: 'Lato';
+    font-size: 16px;
+    width:85%;
+    margin: 0 auto;
+    text-align: center;
+}
+.JTRF2-item6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-gap:20px;
+    position: relative;
+    top: 25px;
+}
+.JTRF2-item6 label {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: rgba(204,153,0,255);
+    font-size: 14px;
+}
+.JTRF2-item6 input {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.JTRF2-item6-form1{
+    grid-row: 1;
+    grid-column: 1;
+}
+.JTRF2-item6-form2 {
+    grid-row: 1;
+    grid-column: 2;
+}
+.JTRF2-item6-form3{
+    grid-row: 2;
+    grid-column: 1;
+}
+.JTRF2-item6-form4 {
+    grid-row: 2;
+    grid-column: 2;
+}
+.JTRF2-item7 {
+    position: relative;
+    top: 50px;
+    left: 175px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: rgba(255,255,255,255);
+    background-color: rgba(204,153,0,255);
+    border: none;
+    padding: 10px 67px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    
+}
+
+
 .JTRFcontainer2-items {
     grid-row: 2;
     grid-column: 4;
