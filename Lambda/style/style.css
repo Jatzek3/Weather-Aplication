@@ -128,10 +128,13 @@ a:link {
     display: grid;
     grid-template-columns: 1fr 500px 1fr;
     grid-template-rows: 100px 1fr 1fr 1fr 1fr 100px;
-    height: 750px;
+    height: 700px;
     align-items: center;
     justify-items: center;
+    background-image: url(../images/Section_Background.png);
 }
+
+
 .JTRFitem1 {
     grid-row: 2;
     grid-column: 2;
@@ -163,8 +166,10 @@ a:link {
 .JTRFitem5 {
     grid-column: -1;
     grid-row: 1/-1;
-    align-self: center;
-    justify-self: center;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+    right: 150px;
 }
 
 
@@ -249,14 +254,28 @@ a:link {
 } */
 
 
-
 .menu-container {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 100px;
-    height: 1000px;
-    font-family: Lato;
+    grid-template-rows: 100px 1fr 1fr 100px;
+    grid-template-columns: 1fr 500px 1fr 500px 1fr;
+    font-family: 'Lato', sans-serif;
+    background-image: url(../images/Section_Background_2.png);
+}
+.menu-item1{
+    grid-row: 2;
+    grid-column: 2;
+}
+.menu-item2 {
+    grid-row: 3;
+    grid-column: 2;
+}
+.menu-item3 {
+    grid-column: 4;
+    grid-row: 2;
+}
+.menu-item4 {
+    grid-column: 4;
+    grid-row: 3;
 }
 
 .menu-container h2 {
@@ -269,18 +288,30 @@ a:link {
 .tzatzyki-box {
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Lato', sans-serif;
 
 }
+.water-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
 .first-item {
     width: 33%;
-    align-self: flex-start;
-
+    font-size: 21px;
+    text-align: left;
+    color: rgba(204,153,0,255);
 
 }
 .second-item {
     width: 66%;
-    align-self: flex-end;
-
+    font-size: 21px;
+    text-align: end;
+    color: rgba(204,153,0,255);
+}
+.third-item{
+    font-size: 16px;
 }
 
 .GuestReviews {
@@ -307,13 +338,15 @@ a:link {
     font-family: 'YesevaOne';
     font-size: 36px;
     color: rgba(255,255,255,255);
+
 }
 
 .guest-reviews-item3{
-    font-family: 'GentiumBookBasic';
+    font-family: 'Gentium Book Basic', serif;
     font-weight: bold;
     font-size: 25px;
     color: rgba(255,255,255,255);
+    width: 75%;
 }
 
 
