@@ -22,9 +22,9 @@
         <li class="nav-item4"><a href="#">Menu</a></li>
         <li class="nav-item5"><a href="#">Reviews</a></li>
         <li class="nav-item6"><a href="#">Reservations</a></li>
-        <img src="images/twitter-brands.svg"  class="nav-item7">
-        <img src="images/youtube-brands.svg" class="nav-item8">
-        <img src="images/facebook-f-brands.svg" class="nav-item9">
+        <img src="images/twitter-brands.svg"  class="nav-item7" alt="twitter">
+        <img src="images/youtube-brands.svg" class="nav-item8" alt="youtube">
+        <img src="images/facebook-f-brands.svg" class="nav-item9" alt="facebook">
     </ul>
 </nav>
     <div class="top-container">
@@ -180,15 +180,15 @@
             <form class="JTRF2-item6">
                 <div class="JTRF2-item6-form1">                                    
                 <label for="fname">name:</label><br>
-                <input type="text" name="fname" value="your name *">
+                <input type="text" name="fname" value="your name *" required>
                 </div>
                 <div class="JTRF2-item6-form2"> 
                 <label for="lname"> email:</label><br>
-                <input type="text" name="lname" value="your email *">
+                <input type="email" name="lname" value="your email *" required>
                 </div>
                 <div class="JTRF2-item6-form3"> 
                 <label for="fname">Date</label><br>
-                <input type="text" id="fname" name="fname" value="date *">
+                <input type="text" id="fname" name="fname" value="date *" required>
                 </div>
                 <div class="JTRF2-item6-form4"> 
                 <label for="lname">Party number</label><br>
@@ -198,32 +198,39 @@
             <p class="JTRF2-item7">Book now!</p>
         </div>
     </section>
-    <footer class="footer-container">
+    <footer>
         <div class="about-us">
             <h2>About Us</h2>
             <img src="images/wm-white.png" alt="water mark">
-            <a>If you've been to one of our restaurants, you've seen - 
+            <p>If you've been to one of our restaurants, you've seen - 
                 and tasted - what keeps our customers coming back for more.
                 Perfect materials and freshly baked food, Delicious Lambda
-                cakes, muffins, and gourmet coffees make us hard to resist!
-                Stop in today and check us out!</a>
+                cakes, muffins, and gourmet coffees make us hard to resist!<br>
+                Stop in today and check us out!</p>
         </div>
         <div class="opening-hours">
             <h2>Opening Hours</h2>
             <img src="images/wm-white.png" alt="water mark">
-            <p>Mon-Thu: 7:00am-8:00pm</p>
-            <p>Fri-Sun: 7:00am-10:00pm</p>
-
+            <p><strong>Mon-Thu</strong>: 7:00am-8:00pm</p>
+            <p><strong>Fri-Sun</strong>: 7:00am-10:00pm</p>
+            <div class="opening-hour-images">
+                <img src="images/cc-discover-brands.svg">
+                <img src="images/cc-paypal-brands.svg">
+                <img src="images/cc-visa-brands.svg">
+                <img src="images/cc-discover-brands.svg">
+            </div>
         </div>
         <div class="our-location">
             <h2>Our Loacation</h2>
             <img src="images/wm-white.png" alt="water mark">
-            <p>19th Paradise Street Sitia</p>
-            <p>128 Meserole Avenue</p>
-            <img src="images/facebook-f-brands.svg">
-            <img src="images/youtube-brands.svg">
-            <img src="images/twitter-brands.svg">
-            <img src="images/trello-brands.svg">
+            <p><strong>19th Paradise Street Sitia</strong></p>
+            <p><strong>128 Meserole Avenue</strong></p>
+            <div class="our-location-images">
+                <img src="images/facebook-f-brands.svg">
+                <img src="images/youtube-brands.svg">
+                <img src="images/twitter-brands.svg">
+                <img src="images/trello-brands.svg">
+            </div>
         </div>
     </footer>
 </body>

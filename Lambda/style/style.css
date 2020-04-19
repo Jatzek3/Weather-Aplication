@@ -12,7 +12,22 @@ header {
     justify-content: space-around;
     align-items: center;
     list-style-type: none;
+    width: 80%;
+    position: relative;
+    left:150px;
 
+}
+.nav-item7 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+.nav-item8 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+.nav-item9 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
 }
 
 
@@ -25,6 +40,7 @@ a:link {
 
     
 }
+
 .ulContainer a:visited {
     text-decoration: none;
     font-family: 'GentiumBookBasic';
@@ -39,20 +55,11 @@ a:link {
     color: rgba(255,255,255,255);
     font-size: 46px;
     flex-basis:550px ;
+}
+a:hover{
+    background-color: rgba(204,153,0,0.7);
+} 
 
-}
-.nav-item7 {
-    height: 16px;
-    fill: whi !important;
-}
-.nav-item8 {
-    height: 16px;
-    fill: rgba(204,153,0,255)!important;
-}
-.nav-item9 {
-    height: 16px;
-    fill: rgba(204,153,0,255)!important;
-}
 /* .nav-item1{
  
 } */
@@ -227,7 +234,6 @@ a:link {
 
 }
 .ingredients-item4 img {
-    border: 2px solid gray;
     background-color: #FFFFFF;
     height: 100px;
     border-radius:50%;
@@ -502,24 +508,64 @@ a:link {
     grid-column: span 2;
     grid-row: 4;
 } */
-
-
 footer {
     display: grid;
-    grid-template-columns: 500px 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row: 2;
+    grid-column: 2;
     justify-items: center;
     align-items: center;
     background-color: #000000;
     color:  white;
+
+
+}
+footer h2 {
+    font-family: 'Yeseva One', cursive;
+    font-size: 21px;
+    color: white;
+    text-align: center;
+}
+footer img {
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+
+    text-align: center;
 }
 
 .about-us {
     display: flex;
     flex-direction: column;
     grid-column: 1;
-
-
 }
+
+/* .about-us h2 {
+    font-family: 'Yeseva One', cursive;
+    font-size: 21px;
+    color: white;
+    text-align: center;
+} */
+/* .about-us img {
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+/* .about-us p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+} */
+
 .opening-hours {
     display: flex;
     flex-direction: column;
@@ -529,11 +575,31 @@ footer {
 .our-location{
     display: flex;
     flex-direction: column;
-
-    grid-column: 3;
-    
+    grid-column: 3;   
 }
-.our-location img {
+
+
+.opening-hour-images {
+    display: flex;
+    justify-content:space-around;
+    width: 150px;
+    position: relative;
+    left:25px;
+}
+.opening-hour-images img {
     height: 16px;
-    fill: white;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(326deg) brightness(100%) contrast(105%);
+}
+
+.our-location-images {
+    display: flex;
+    justify-content:space-around;
+    width: 100px;
+    position: relative;
+    left:50px;
+}
+
+.our-location-images img {
+    height: 16px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(326deg) brightness(100%) contrast(105%);
 }
