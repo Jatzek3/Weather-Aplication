@@ -3,31 +3,38 @@
 <head>
     <title>RSS School -task</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="rss.css">
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="rss.css">
 </head>
 <body>
 <header>
-    <div class="circle"></div>
-    <div class="name">Andrew Smith</div>
-    <div class="title">UI/UX Designer</div>
-    <address>
-        <img src="Images/loc.bmp" class="locImg" alt="little icon">
-        <div class="locInfo">67/B Munshi para Sylhet</div>
-        <img src="Images/world.bmp" class="worldImg" alt="little icon">
-        <div class="worldInfo"> itsnuman.com<br>jan@mail.com</div>
-        <img src="Images/tel.bmp" class="telImg" alt="little icon">
-        <div class="telInfo">+444 034 534 </div>
+<div class="header-block">
+    <div class="header-left-side">
+        <div class="circle"></div>
+        <div class="name">Andrew Smith<br> <span class="title">UI/UX Designer</span></div>
+        <div class="clear-both-container"></div>
+    </div>
+    <address class="header-right-side">
+        <ul>
+        <li><img src="images/loc.bmp" class="loc-img" alt="little icon"><div class="loc-info">67/B Munshi para Sylhet</div></li>
+        <li><img src="images/world.bmp" class="world-img" alt="little icon"><div class="world-info">itsnuman.com<br>jan@mail.com</div></li>
+        <li><img src="images/tel.bmp" class="tel-img" alt="little icon"></li><div class="tel-info">+444 034 534 </div>
+        <div class="clear-both"></div>
+    </ul>
     </address>
 </header>
-<main>
-    <section class="Profile info">
-        <img src="Images/bagCircle.bmp" class="bagCircle1" alt="bagCircle">
-        <div class="H2AndText1">
+</div>
+    <aside>
+    <section class="profile-info">
+        <div class="bag+circle">
+            <div class="little-circle"><img src="images/briefcase-solid.svg" class="bag" alt="bag"></div>
+        </div>
+        <div class="h2-and-text">
             <h2>Profile Info</h2>
         </div>
-        <div class="ProfInfoText">
+        <div class="profile-info-text">
             <p>Dolor sit a quam erat volut-<br>
             past. Ut wisi enim ad minim<br>
             veniam, quisnostruduk cipit<br>
@@ -36,50 +43,78 @@
             cipit lobortis nisea. </p>
         </div>
     </section>
-    <section class="Intrests">
-        <img src="Images/bagCircle.bmp" class="bagCircle2" alt="bagCircle">
-        <div class="H2AndText2">
-            <h2>Intrests</h2>
+    <section class="intrests">
+        <div class="bag+circle">
+            <div class="little-circle"><img src="images/briefcase-solid.svg" class="bag" alt="bag"></div>
         </div>
-        <img src="Images/Intrests.bmp" class="intrests" alt="Intrests">
+            <h2 class="h2-and-text">Intrests</h2>
+        </div>
+        <div class="intersts-container">
+            <div class="headphones-container">  <img src="images/headphones-alt-solid.svg" class="headphones" alt="headphone"><figcaption>Music</figcaption></div> 
+            <div class="gaming-container"> <img src="images/gamepad-solid.svg" class="gamepad" alt="gamepad"><figcaption>Gaming</figcaption></div> 
+            <div class="biking-container"> <img src="images/vespa.png" class="biking" alt="biking"><figcaption>Biking</figcaption></div>
+        </div>
+        <div class="clear-both"></div>
     </section>
     <section class="Reference">
-        <img src="Images/bagCircle.bmp" class="bagCirclereference" alt="bagCircle">
-        <div class="H2AndText3">
+        <div class="bag+circle">
+            <div class="little-circle"><img src="images/briefcase-solid.svg" class="bag" alt="bag"></div>
+        </div>
+        <div class="h2-and-text">
            <h2>Reference</h2>
         </div>
-        <img src="Images/career.bmp" class="career" alt="careerpath">
+        <img src="images/career.bmp" class="career" alt="careerpath">
     </section>
-    <section class="Awwards">
-        <img src="Images/bagCircle.bmp" class="bagCircle3" alt="bagCircle3">
-        <div class="H2AndText4"><h2>Awards</h2></div>
+    <section class="awards">
+        <div class="bag+circle">
+            <div class="little-circle"><img src="images/briefcase-solid.svg" class="bag" alt="bag"></div>
+        </div>
+        <div class="h2-and-text"><h2>Awards</h2></div>
         <div class="Awards">
         <p> Illustration award 2009<br>
             Web Design award 2012<br>
             Eliteaward 20019<br>
         </div>
     </section>
-    <aside>
-        <img src="Images/bagCircle.bmp" class="bagCircle4" alt="bagCircle4">
-        <div class="H2AndText5">Portfolio</div>
-        <div class="square1"></div>
-        <div class="TitleUnderBox1"><strong>Converter Ipod Video</strong><br>UI/UX Design</div>
-        <div class="square2"></div>
-        <div class="TitleUnderBox2"><strong>The skinny On Lcd</strong><br>Web Typography</div>
-        <div class="square3"></div>
-        <div class="TitleUnderBox3"><strong>The Best Answer</strong><br>Graphic Design</div>
-        <div class="square4"></div>
-        <div class="TitleUnderBox4"><strong>3 Simple Ways to Save</strong><br>UI/UX Design</div>
-        <div class="square5"></div>
-        <div class="TitleUnderBox5"><strong>Life Advice Looking</strong><br>Web Design</div>
-        <div class="square6"></div>
-        <div class="TitleUnderBox6"><strong>How To Build A Pc</strong><br>Graphic Design</div>
-
-
     </aside>
+    <main>
+        <div class="bag+circle">
+            <div class="little-circle"><img src="images/briefcase-solid.svg" class="bag" alt="bag"></div>
+        </div>
+        <div class="h2-and-text-portfolio">Portfolio</div>
+        <div class="clear-both"></div>
+        <div class="square-container1">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>Converter Ipod Video</strong><br>UI/UX Design</div>
+        </div>
+        <div class="square-container2">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>The skinny On Lcd</strong><br>Web Typography</div>
+        </div>
+        <div class="clear-both"></div>
+        <div class="square-container3">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>The Best Answer</strong><br>Graphic Design</div>
+        </div>
+        <div class="square-container4">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>3 Simple Ways to Save</strong><br>UI/UX Design</div>
+        </div>
+        <div class="clear-both"></div>
+        <div class="square-container5">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>Life Advice Looking</strong><br>Web Design</div>
+        </div>
+        <div class="square-container6">
+            <div class="square"></div>
+            <div class="title-under-box"><strong>How To Build A Pc</strong><br>Graphic Design</div>
+        </div>
+    </main>
+
+
 </main>
 <footer>
-    <div class="footerInfo">
+    <div class="footer-info">
         <p>You can write me on <strong>jan@mail</strong> or call <strong>+ 444 034 534</strong></p>
     </div>
 </footer>
