@@ -1,0 +1,315 @@
+
+html {
+    background-color: white;
+    height: 1200px;
+}
+
+.circle {
+    background-color: whitesmoke;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    left: 60px;
+    top: 60px;
+}
+
+.name {
+    position: fixed;
+    left: 250px;
+    top: 80px;
+    color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 45px;
+    font-weight: bolder;
+}
+
+
+.title {
+    position: fixed;
+    left: 250px;
+    top: 150px;
+    color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+.locImg {
+    position: fixed;
+    left:770px;
+    top: 60px;
+}
+.locInfo {
+    position: fixed;
+    left:800px;
+    top: 65px;
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+}
+.locInfo:hover {
+    color: orangered;
+  }
+
+.worldImg {
+    position: fixed;
+    left:770px;
+    top: 120px;
+}
+.worldInfo {
+    position: fixed;
+    left:800px;
+    top: 120px;
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+}
+.worldInfo:hover {
+    color: orangered;
+  }
+.telImg {
+    position: fixed;
+    left:770px;
+    top: 180px;
+}
+.telInfo {
+    position: fixed;
+    left:800px;
+    top: 185px;
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+}
+.telInfo:hover {
+    color: orangered;
+  }
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4c5eab;
+    height: 250px;
+}
+
+
+
+
+
+
+.bagCircle1 {
+    position: fixed;
+    left: 80px;
+    top: 300px;
+}
+.H2AndText1 {
+    position: fixed;
+    left: 150px;
+    top: 285px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+
+}
+.ProfInfoText {
+    position: fixed;
+    left: 80px;
+    top: 360px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bagCircle2 {
+    position: fixed;
+    left: 80px;
+    top: 500px;
+}
+.H2AndText2 {
+    position: fixed;
+    left: 150px;
+    top: 485px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+}
+.intrests {
+    position: fixed;
+    left: 60px;
+    top: 580px;
+}
+.bagCirclereference {
+    position: fixed;
+    left: 80px;
+    top: 700px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+}
+.H2AndText3 {
+    position: fixed;
+    left: 150px;
+    top: 685px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+}
+.career {
+    position: fixed;
+    left: 80px;
+    top: 750px;
+}
+
+.bagCircle3 {
+    position: fixed;
+    left: 80px;
+    top: 950px;
+}
+.H2AndText4 {
+    position: fixed;
+    left: 150px;
+    top: 945px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+}
+
+.Awards {
+    position: fixed;
+    left: 80px;
+    top: 1000px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    line-height: 25px;
+}
+.bagCircle4 {
+    position: fixed;
+    left: 360px;
+    top: 300px;
+}
+.H2AndText5 {
+    position: fixed;
+    left: 420px;
+    top: 310px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    line-height: 25px;
+
+}
+
+
+
+
+
+.square1 {
+    position: fixed;
+    left: 450px;
+    top: 360px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+.TitleUnderBox1 {
+    position: fixed;
+    left: 500px;
+    top: 530px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.square2 {
+    position: fixed;
+    left: 770px;
+    top: 360px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+.TitleUnderBox2 {
+    position: fixed;
+    left: 820px;
+    top: 530px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.square3 {
+    position: fixed;
+    left: 450px;
+    top: 600px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+
+.TitleUnderBox3 {
+    position: fixed;
+    left: 500px;
+    top: 770px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.square4 {
+    position: fixed;
+    left: 770px;
+    top: 600px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+.TitleUnderBox4 {
+    position: fixed;
+    left: 820px;
+    top: 770px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.square5 {
+    position: fixed;
+    left: 770px;
+    top: 840px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+.TitleUnderBox5 {
+    position: fixed;
+    left: 500px;
+    top: 1000px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.square6 {
+    position: fixed;
+    left: 450px;
+    top: 840px;
+    height: 160px;
+    width: 250px;
+    background-color: rgb(206, 206, 206);
+}
+.TitleUnderBox6 {
+    position: fixed;
+    left: 820px;
+    top: 1000px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+main {
+    background-color: whitesmoke;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    background: #4c5eab;
+    height: 100px;
+    width: 100%;
+    color: whitesmoke;
+}
+
+.footerInfo {
+    position: fixed;
+    left: 80px;
+    bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+strong:hover {
+    color: orangered;
+}
