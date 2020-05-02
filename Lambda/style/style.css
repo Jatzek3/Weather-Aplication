@@ -1,12 +1,14 @@
-html {
-    max-width: 1600px;
+body {
+    width: 1600px;
 }
+/* Header */
+
 header {
     background-image: url(../images/BgTop.png);
     height:750px;
 }
 
-.ulContainer {
+.navbar-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -15,39 +17,6 @@ header {
     width: 80%;
     position: relative;
     left:150px;
-
-}
-.nav-item7 {
-    height: 16px;
-    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
-}
-.nav-item8 {
-    height: 16px;
-    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
-}
-.nav-item9 {
-    height: 16px;
-    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
-}
-
-
-a:link {
-    text-decoration: none;
-    font-family: 'GentiumBookBasic';
-    font-weight: bold;
-    font-size: 21px;
-    color: rgba(255,255,255,255);
-
-    
-}
-
-.ulContainer a:visited {
-    text-decoration: none;
-    font-family: 'GentiumBookBasic';
-    font-weight: bold;
-    font-size: 21px;
-    color:rgba(255,255,255,255) ;
-    
 }
 
 .nav-item0 {
@@ -56,45 +25,53 @@ a:link {
     font-size: 46px;
     flex-basis:550px ;
 }
-a:hover{
+
+.nav-item7 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+.nav-item8 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+.nav-item9 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+
+.navbar-container a:visited {
+    text-decoration: none;
+    font-family: 'GentiumBookBasic';
+    font-weight: bold;
+    font-size: 21px;
+    color:rgba(255,255,255,255) ;
+    
+}
+
+a:link {
+    text-decoration: none;
+    font-family: 'GentiumBookBasic';
+    font-weight: bold;
+    font-size: 21px;
+    color: rgba(255,255,255,255);
+}
+
+a:hover {
     background-color: rgba(204,153,0,0.7);
 } 
 
-/* .nav-item1{
- 
-} */
-/* 
-.nav-item2{
-}
-.nav-item3{
-}
-.nav-item4{
+/* Landing Page */
 
-}
-.nav-item5 {
-
-}
-.nav-item6 {
-
-}
-.nav-item7 {
-
-}
-.nav-item8 {
-
-}
-.nav-item9 {
-
-} */
-
-
-.top-container {
+.landing-page-container {
     display:grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 300px 1fr 1fr;
 
 }
-.top-item1{
+.landing-page-item1{
     grid-column: span 2;
     font-family: 'Yeseva One', cursive;
     color: rgba(255,255,255,255);
@@ -103,13 +80,13 @@ a:hover{
     justify-self: center;
     text-align: center;
 }
-.top-item2{
+.landing-page-item2{
     grid-column: span 2;
     align-self: center;
     justify-self: center;
 
 }
-.top-item3{
+.landing-page-item3 {
     font-family: 'Lato';
     font-size: 18px;
     color: rgba(255,255,255,255);
@@ -127,7 +104,7 @@ a:hover{
     width: 150px;
 
 }
-.top-item4{
+.landing-page-item4{
     font-family: 'Lato';
     font-size: 18px;
     color: rgba(255,255,255,255);
@@ -144,9 +121,9 @@ a:hover{
     width: 150px;
 
 }
+/* Right food section */
 
-
-.JTRFcontainer {
+.right-food-container {
     display: grid;
     grid-template-columns: 1fr 500px 1fr;
     grid-template-rows: 100px 1fr 1fr 1fr 1fr 100px;
@@ -157,21 +134,20 @@ a:hover{
 }
 
 
-.JTRFitem1 {
+.right-food-item1 {
     grid-row: 2;
     grid-column: 2;
     font-family: 'Yeseva One', cursive;
     font-size: 36px;
     color: rgba(204,153,0,255);
     text-align: center;
-
 }
-.JTRFite2 {
+.right-food-item2 {
     grid-row: 3;
     grid-column: 2;
-
 }
-.JTRFitem3 {
+
+.right-food-item3 {
     grid-column: 2;
     grid-row: 4;
     font-family: Lato;
@@ -182,11 +158,13 @@ a:hover{
     line-height: 30px;
     text-align: center;
 }
-.JTRFitem4 {
+
+.right-food-item4{
     grid-row: 5;
     grid-column: 2;
 }
-.JTRFitem5 {
+
+.right-food-item5 {
     grid-column: -1;
     grid-row: 1/-1;
     align-self: start;
@@ -195,6 +173,7 @@ a:hover{
     right: 150px;
 }
 
+/* Ingrediedts-section */
 
 .ingredients {
     background-image: url(../images/BgIng.png);
@@ -215,11 +194,13 @@ a:hover{
     align-items: center ;
 
 }
+
 .ingredients-item1 {
     font-family: 'YesevaOne';
     font-size: 	36px;
     color: rgba(255,255,255,255);
 }
+
 .ingredients-item3{
     font-family: 'Lato';
     font-size: 	16px;
@@ -228,16 +209,19 @@ a:hover{
     line-height: 25px;
     text-align: center;
 }
+
 .ingredients-item4{
     display: flex;
     justify-content: space-around;
 
 }
+
 .ingredients-item4 img {
     background-color: #FFFFFF;
     height: 100px;
     border-radius:50%;
     width: 100px;
+    border: 3px solid #949494;
 }
 
 .ingredients-item4-first{
@@ -250,32 +234,7 @@ a:hover{
     left: 50px;
 }
 
-/* .ingredients-item0{
-    grid-row: 1/-1;
-}
-.ingredients-item1 {
-    grid-row: 1;
-    grid-column: 2;
-    font-family: YesevaOne;
-    font-size: 36px;
-    color: rgba(255,255,255,255);
-}
-.ingredients-item2 {
-    grid-row: 2;
-    grid-column: 2;
-}
-.ingredients-item3 {
-    grid-row: 3;
-    grid-column: 2;
-    font-family: Lato;
-    font-size: 16px;
-    color: rgba(255,255,255,255);
-}
-.ingredients-item4 {
-    grid-row: 4;
-    grid-column: 2;
-} */
-
+/* Menu section */
 
 .menu-container {
     display: grid;
@@ -285,24 +244,28 @@ a:hover{
     background-image: url(../images/Section_Background_2.png);
     height: 1000px;
 }
+
 .menu-item1{
     grid-row: 2;
     grid-column: 2;
     position: relative;
     top: -100px;
 }
+
 .menu-item2 {
     grid-row: 3;
     grid-column: 2;
     position: relative;
     top: -100px;
 }
+
 .menu-item3 {
     grid-column: 4;
     grid-row: 2;
     position: relative;
     top: -100px;
 }
+
 .menu-item4 {
     grid-column: 4;
     grid-row: 3;
@@ -323,6 +286,7 @@ a:hover{
     font-family: 'Lato', italic;
 
 }
+
 .water-image {
     display: block;
     margin-left: auto;
@@ -336,7 +300,6 @@ a:hover{
     color: rgba(204,153,0,255);
 
     border-bottom: 1px inset rgba(204,153,0,0.4);
-
 }
 .second-item {
     width: 66%;
@@ -346,11 +309,13 @@ a:hover{
     color: rgba(204,153,0,255);
     border-bottom: 1px inset rgba(204,153,0,0.4);
 }
+
 .third-item{
     font-size: 16px;
 }
+/* Guest Reviews */
 
-.GuestReviews {
+.guest-reviews {
     background-image: url(../images/BgIng.png);
     height: 750px;
     display: grid;
@@ -368,13 +333,12 @@ a:hover{
     color: white;
     display: flex;
     flex-direction: column;
-
 }
+
 .guest-reviews-item1{
     font-family: 'YesevaOne';
     font-size: 36px;
     color: rgba(255,255,255,255);
-
 }
 
 .guest-reviews-item3{
@@ -386,8 +350,9 @@ a:hover{
     text-align: center;
 }
 
+/* Second right food */
 
-.JTRFcontainer2 {
+.right-food-middle-container {
     display: grid;
     grid-template-columns: 1fr 25% 25% 550px 1fr;
     grid-template-rows:1f 550px 1fr;
@@ -395,43 +360,45 @@ a:hover{
     align-content: center;
     justify-content: center;
     background-image: url(../images/Section_Background.png);
-
 }
-.JTRF2-item1{
+
+.right-food-middle-item1{
     grid-column: 2;
     grid-row: 2;
     font-family: 'Yeseva One', cursive;
     font-size: 36px;
     color: rgba(204,153,0,255);
-
 }
-.JTRF2-item2 {
+
+.right-food-middle-item2 {
     grid-column: 3;
     grid-row: 2;
-
-
 }
-.JTRF2-item3 {
+
+.right-food-middle-item3 {
     font-family: 'Yeseva One', cursive;
     font-size: 36px;
     color: rgba(204,153,0,255);
     text-align: center;
     align-self: start;
 }
-.JTRF2-item4{
+
+.right-food-middle-item4 {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
-.JTRF2-item5{
+
+.right-food-middle-item5 {
     font-family: 'Lato';
     font-size: 16px;
     width:85%;
     margin: 0 auto;
     text-align: center;
 }
-.JTRF2-item6 {
+
+.right-food-middle-item6 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -443,35 +410,41 @@ a:hover{
     position: relative;
     top: 25px;
 }
-.JTRF2-item6 label {
+
+.right-food-middle-item6 label {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     color: rgba(204,153,0,255);
     font-size: 14px;
 }
-.JTRF2-item6 input {
+
+.right-food-middle-item6 input {
     font-family: 'Open Sans', sans-serif;
     font-style: italic;
     font-size: 16px;
 }
 
-.JTRF2-item6-form1{
+.right-food-middle-item6-form1 {
     grid-row: 1;
     grid-column: 1;
 }
-.JTRF2-item6-form2 {
+
+.right-food-middle-item6-form2 {
     grid-row: 1;
     grid-column: 2;
 }
-.JTRF2-item6-form3{
+
+.right-food-middle-item6-form3{
     grid-row: 2;
     grid-column: 1;
 }
-.JTRF2-item6-form4 {
+
+.right-food-middle-item6-form4 {
     grid-row: 2;
     grid-column: 2;
 }
-.JTRF2-item7 {
+
+.right-food-middle-item7 {
     position: relative;
     top: 50px;
     left: 175px;
@@ -484,30 +457,17 @@ a:hover{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    
 }
 
-
-.JTRFcontainer2-items {
+.right-food-middle-items {
     grid-row: 2;
     grid-column: 4;
 }
-/* .JTRF2-item3{
-    grid-column: span 2;
-    grid-row: 1;
-}
-.JTRF2-item4{
-    grid-column: span 2;
-    grid-row: 2;
-}
-.JTRF2-item5 {
-    grid-column: span 2;
-    grid-row: 3;
-}
-.JTRF2-item6 {
-    grid-column: span 2;
-    grid-row: 4;
-} */
+
+/* footer */
+
+
+
 footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -517,15 +477,15 @@ footer {
     align-items: center;
     background-color: #000000;
     color:  white;
-
-
 }
+
 footer h2 {
     font-family: 'Yeseva One', cursive;
     font-size: 21px;
     color: white;
     text-align: center;
 }
+
 footer img {
     width: 150px;
     display: block;
@@ -546,26 +506,6 @@ footer p {
     grid-column: 1;
 }
 
-/* .about-us h2 {
-    font-family: 'Yeseva One', cursive;
-    font-size: 21px;
-    color: white;
-    text-align: center;
-} */
-/* .about-us img {
-    width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
-/* .about-us p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-} */
-
 .opening-hours {
     display: flex;
     flex-direction: column;
@@ -578,7 +518,6 @@ footer p {
     grid-column: 3;   
 }
 
-
 .opening-hour-images {
     display: flex;
     justify-content:space-around;
@@ -586,6 +525,7 @@ footer p {
     position: relative;
     left:25px;
 }
+
 .opening-hour-images img {
     height: 16px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(326deg) brightness(100%) contrast(105%);
