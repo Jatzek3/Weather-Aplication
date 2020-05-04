@@ -1,4 +1,0 @@
-Yeseva One: font weight 400
-Gentium Book Basic: font weight 700
-Lato: font-weight 400
-Open Sans: font weight: 400, 700
