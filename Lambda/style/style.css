@@ -1,0 +1,545 @@
+body {
+    width: 1600px;
+}
+/* Header */
+
+header {
+    background-image: url(../images/BgTop.png);
+    height:750px;
+}
+
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    width: 80%;
+    position: relative;
+    left:150px;
+}
+
+.nav-item0 {
+    font-family: 'Yeseva One', cursive;
+    color: rgba(255,255,255,255);
+    font-size: 46px;
+    flex-basis:550px ;
+}
+
+.nav-item7 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+.nav-item8 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+.nav-item9 {
+    height: 16px;
+    filter: invert(70%) sepia(56%) saturate(4415%) hue-rotate(14deg) brightness(95%) contrast(101%);
+}
+
+
+.navbar-container a:visited {
+    text-decoration: none;
+    font-family: 'GentiumBookBasic';
+    font-weight: bold;
+    font-size: 21px;
+    color:rgba(255,255,255,255) ;
+    
+}
+
+a:link {
+    text-decoration: none;
+    font-family: 'GentiumBookBasic';
+    font-weight: bold;
+    font-size: 21px;
+    color: rgba(255,255,255,255);
+}
+
+a:hover {
+    background-color: rgba(204,153,0,0.7);
+} 
+
+/* Landing Page */
+
+.landing-page-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 1fr 1fr;
+
+}
+.landing-page-item1{
+    grid-column: span 2;
+    font-family: 'Yeseva One', cursive;
+    color: rgba(255,255,255,255);
+    font-size: 90px;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+.landing-page-item2{
+    grid-column: span 2;
+    align-self: center;
+    justify-self: center;
+
+}
+.landing-page-item3 {
+    font-family: 'Lato';
+    font-size: 18px;
+    color: rgba(255,255,255,255);
+    align-self: center;
+    justify-self: end ;
+    position: relative;
+    left: -50px;
+    top: 25px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
+
+}
+.landing-page-item4{
+    font-family: 'Lato';
+    font-size: 18px;
+    color: rgba(255,255,255,255);
+    align-self: center;
+    position: relative;
+    left: 50px;
+    top: 25px;
+    background-color: rgba(255,255,255, 0.3);
+    border: none;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
+
+}
+/* Right food section */
+
+.right-food-container {
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows: 100px 1fr 1fr 1fr 1fr 100px;
+    height: 700px;
+    align-items: center;
+    justify-items: center;
+    background-image: url(../images/Section_Background.png);
+}
+
+
+.right-food-item1 {
+    grid-row: 2;
+    grid-column: 2;
+    font-family: 'Yeseva One', cursive;
+    font-size: 36px;
+    color: rgba(204,153,0,255);
+    text-align: center;
+}
+.right-food-item2 {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.right-food-item3 {
+    grid-column: 2;
+    grid-row: 4;
+    font-family: Lato;
+    font-size: 16px;
+    width: 90%;
+    color: rgba(76,76,76,255);
+    border: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.right-food-item4{
+    grid-row: 5;
+    grid-column: 2;
+}
+
+.right-food-item5 {
+    grid-column: -1;
+    grid-row: 1/-1;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+    right: 150px;
+}
+
+/* Ingrediedts-section */
+
+.ingredients {
+    background-image: url(../images/BgIng.png);
+    display: grid;
+    grid-template-columns: 50% 550px 1fr;
+    grid-template-rows: 1fr 500px 1fr;
+    height:750px;
+
+}
+
+.ingredients-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    align-items: center ;
+
+}
+
+.ingredients-item1 {
+    font-family: 'YesevaOne';
+    font-size: 	36px;
+    color: rgba(255,255,255,255);
+}
+
+.ingredients-item3{
+    font-family: 'Lato';
+    font-size: 	16px;
+    color: rgba(255,255,255,255);
+    width: 80%;
+    line-height: 25px;
+    text-align: center;
+}
+
+.ingredients-item4{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.ingredients-item4 img {
+    background-color: #FFFFFF;
+    height: 100px;
+    border-radius:50%;
+    width: 100px;
+    border: 3px solid #949494;
+}
+
+.ingredients-item4-first{
+    position: relative;
+    left: -50px;
+}
+
+.ingredients-item4-third{
+    position: relative;
+    left: 50px;
+}
+
+/* Menu section */
+
+.menu-container {
+    display: grid;
+    grid-template-rows: 100px 1fr 1fr 100px;
+    grid-template-columns: 1fr 500px 1fr 500px 1fr;
+    font-family: 'Lato', sans-serif;
+    background-image: url(../images/Section_Background_2.png);
+    height: 1000px;
+}
+
+.menu-item1{
+    grid-row: 2;
+    grid-column: 2;
+    position: relative;
+    top: -100px;
+}
+
+.menu-item2 {
+    grid-row: 3;
+    grid-column: 2;
+    position: relative;
+    top: -100px;
+}
+
+.menu-item3 {
+    grid-column: 4;
+    grid-row: 2;
+    position: relative;
+    top: -100px;
+}
+
+.menu-item4 {
+    grid-column: 4;
+    grid-row: 3;
+    position: relative;
+    top: -200px;
+}
+
+.menu-container h2 {
+    text-align: center;
+    font-family: 'Yeseva One', cursive;
+    font-style: 36px;
+    color: rgba(204,153,0,255);
+}
+
+.tzatzyki-box {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Lato', italic;
+
+}
+
+.water-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+.first-item {
+    width: 33%;
+    font-size: 21px;
+    text-align: left;
+    color: rgba(204,153,0,255);
+
+    border-bottom: 1px inset rgba(204,153,0,0.4);
+}
+.second-item {
+    width: 66%;
+    font-size: 21px;
+    text-align: end;
+
+    color: rgba(204,153,0,255);
+    border-bottom: 1px inset rgba(204,153,0,0.4);
+}
+
+.third-item{
+    font-size: 16px;
+}
+/* Guest Reviews */
+
+.guest-reviews {
+    background-image: url(../images/BgIng.png);
+    height: 750px;
+    display: grid;
+    grid-template-columns:1fr 800px 1fr;
+    grid-template-rows:  1fr 500px 1fr;
+}
+
+
+.guest-reviews-container {
+    grid-row: 2;
+    grid-column: 2;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.guest-reviews-item1{
+    font-family: 'YesevaOne';
+    font-size: 36px;
+    color: rgba(255,255,255,255);
+}
+
+.guest-reviews-item3{
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: rgba(255,255,255,255);
+    width: 75%;
+    text-align: center;
+}
+
+/* Second right food */
+
+.right-food-middle-container {
+    display: grid;
+    grid-template-columns: 1fr 25% 25% 550px 1fr;
+    grid-template-rows:1f 550px 1fr;
+    height: 700px;
+    align-content: center;
+    justify-content: center;
+    background-image: url(../images/Section_Background.png);
+}
+
+.right-food-middle-item1{
+    grid-column: 2;
+    grid-row: 2;
+    font-family: 'Yeseva One', cursive;
+    font-size: 36px;
+    color: rgba(204,153,0,255);
+}
+
+.right-food-middle-item2 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.right-food-middle-item3 {
+    font-family: 'Yeseva One', cursive;
+    font-size: 36px;
+    color: rgba(204,153,0,255);
+    text-align: center;
+    align-self: start;
+}
+
+.right-food-middle-item4 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.right-food-middle-item5 {
+    font-family: 'Lato';
+    font-size: 16px;
+    width:85%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.right-food-middle-item6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-gap:20px;
+    position: relative;
+    top: 25px;
+}
+
+.right-food-middle-item6 label {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: rgba(204,153,0,255);
+    font-size: 14px;
+}
+
+.right-food-middle-item6 input {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.right-food-middle-item6-form1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.right-food-middle-item6-form2 {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.right-food-middle-item6-form3{
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.right-food-middle-item6-form4 {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.right-food-middle-item7 {
+    position: relative;
+    top: 50px;
+    left: 175px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: rgba(255,255,255,255);
+    background-color: rgba(204,153,0,255);
+    border: none;
+    padding: 10px 67px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.right-food-middle-items {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+/* footer */
+
+
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row: 2;
+    grid-column: 2;
+    justify-items: center;
+    align-items: center;
+    background-color: #000000;
+    color:  white;
+}
+
+footer h2 {
+    font-family: 'Yeseva One', cursive;
+    font-size: 21px;
+    color: white;
+    text-align: center;
+}
+
+footer img {
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+
+    text-align: center;
+}
+
+.about-us {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+}
+
+.opening-hours {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+}
+
+.our-location{
+    display: flex;
+    flex-direction: column;
+    grid-column: 3;   
+}
+
+.opening-hour-images {
+    display: flex;
+    justify-content:space-around;
+    width: 150px;
+    position: relative;
+    left:25px;
+}
+
+.opening-hour-images img {
+    height: 16px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(326deg) brightness(100%) contrast(105%);
+}
+
+.our-location-images {
+    display: flex;
+    justify-content:space-around;
+    width: 100px;
+    position: relative;
+    left:50px;
+}
+
+.our-location-images img {
+    height: 16px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(326deg) brightness(100%) contrast(105%);
+}
