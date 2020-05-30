@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
     let temperaturDegree = document.querySelector('.temperature-degree');
     let locationTimezone = document.querySelector('.location-timezone');
     let temperatureSection = document.querySelector('.temperature-section');
-    const temperatureSpan = document.querySelector('.temperature-section span');
+    let temperatureSpan = document.querySelector('.temperature-section span');
 
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition
@@ -26,7 +26,13 @@ window.addEventListener('load', () => {
             })
             .then(data => {
                 const { temp } = data.main;
-                const description = data.weather[0].description;
+                const windSpeed = data.wind.speed;
+                const humidity = data.main.humidity;
+                const description = `${data.weather[0].description}
+                                    Feels Like: Yet o be implemented
+                                    Wind Speed: ${windSpeed} m/s
+                                    Humidity: ${humidity} %` ;
+                                    
                 const country = data.sys.country;
                 const region = data.name;
                 const iconID = data.weather[0].icon;
@@ -37,6 +43,7 @@ window.addEventListener('load', () => {
                 locationTimezone.textContent = `${country}\\${region}`;
                     // Formula for Celsius
                     let celsius = Math.round(temp - 272.15);
+                    // Formula for fahrenheit
                     let fahrenheit = Math.round((temp * 9)/ 5 - 459.67);
 
                 temperatureSection.addEventListener('click',() =>{

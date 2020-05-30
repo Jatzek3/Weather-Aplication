@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather-App</title>
     <link rel="stylesheet" href="font/Rimouski.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <div class="location">
-        <h1 class="location-timezone">Timezone</h1>
-        <div class="weather-icon">
-            <img src="icons/unknown.png" alt="">
-        </div>
-    <div class="temperature-section">
+    <nav>
+        <div class ="button change-background"></div>
+        <div class ="button change-language"></div>
+        <div class ="button change-degree"></div>
+        <div class= "search-input"></div>
+    </nav>
+    <section class="current-weather">
+        <h1 class="location-timezone">Country\City</h1>
+        <h2 class="present-date">Date:weekday,day,month</h2>
+        <h2 class="present-time">Hours:minutes(uodated every minute)</h2>
+        <div class="weather-icon"><img src="icons/unknown.png" alt="Weather Icon"></div>
+    
+        <div class="temperature-section">
         <div class="degree-section">
             <h2 class="temperature-degree">34</h2>
             <span>K</span>
         </div>
-    <div class="temperature-description"> Its friggin cold</div>
-    </div>
+        <div class="temperature-description">Loading</div>
+        </div>
+    </section>
+    <section class="forecast">
+        <div class="day1"></div>
+        <div class="day2"></div>
+        <div class="day3"></div>
+    </section>
+    <aside class="geoloacation">
+        <div class="map-object"></div>
+        <div class="coordinates"></div>
+    </aside>
     <script type="module" src='js/app.js'></script>
 </body>
 </html>
