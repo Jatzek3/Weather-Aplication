@@ -2,8 +2,10 @@ window.addEventListener('load', () => {
     let long;
     let lat;
     let key;
+
+    let iconElement = document.querySelector(".weather-icon");
     let tempaeraturDescription = document.querySelector('.temperature-description');
-    let tempaeraturDegree = document.querySelector('.temperature-degree');
+    let temperaturDegree = document.querySelector('.temperature-degree');
     let locationTimezone = document.querySelector('.location-timezone');
     let temperatureSection = document.querySelector('.temperature-section');
     const temperatureSpan = document.querySelector('.temperature-section span');
@@ -22,32 +24,31 @@ window.addEventListener('load', () => {
             .then(response => {
                 return response.json();
             })
-            .then(data =>{
-                console.log(data);
+            .then(data => {
                 const { temp } = data.main;
                 const description = data.weather[0].description;
                 const country = data.sys.country;
-                // // const region = data.main[name];
-                // console.log(region)
-                // console.log(country)
-                // Set Dom Elements from the API
-                tempaeraturDegree.textContent = temp;
+                const region = data.name;
+                const iconID = data.weather[0].icon;
+
+                iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
+                temperaturDegree.textContent = temp;
                 tempaeraturDescription.textContent = description;
-                locationTimezone.textContent = country;
+                locationTimezone.textContent = `${country}\\${region}`;
                     // Formula for Celsius
-                    let celsius = temp - 272.15;
+                    let celsius = Math.round(temp - 272.15);
                     let fahrenheit = Math.round((temp * 9)/ 5 - 459.67);
 
                 temperatureSection.addEventListener('click',() =>{
                     if(temperatureSpan.textContent === 'K'){
                         temperatureSpan.textContent = 'C';
-                        tempaeraturDegree.textContent = celsius
+                        temperaturDegree.textContent = celsius
                     } else if (temperatureSpan.textContent === 'C'){
                         temperatureSpan.textContent = 'F';
-                        tempaeraturDegree.textContent = fahrenheit;
+                        temperaturDegree.textContent = fahrenheit;
                     } else {
                         temperatureSpan.textContent = 'K';
-                        tempaeraturDegree.textContent = temp;
+                        temperaturDegree.textContent = temp;
                     }
                 })
             });
