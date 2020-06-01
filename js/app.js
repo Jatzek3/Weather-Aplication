@@ -17,8 +17,9 @@ window.addEventListener('load', () => {
     let temperatureSpan = document.querySelector('.temperature-section span');
     let iconElement = document.querySelector(".weather-icon");
 
-    let changeDegreesButton = document.querySelector('.change-degree');
+    let changeBackgroundButton = document.querySelector('.change-background');
     let changeLanguageButton = document.querySelector('.change-language');
+    let changeDegreesButton = document.querySelector('.change-degree');
 
     let getMonthName = function(dateObj) {
         let number = dateObj.getMonth();
@@ -120,7 +121,8 @@ window.addEventListener('load', () => {
                         temperaturDegree.textContent = temp;
                     }
                     feelsLike(data.main.feels_like);
-                })
+                });
+
                 changeLanguageButton.addEventListener('click',() =>{
                     if (tempaeraturDescription.textContent.slice(0,3) ==='Gen'){
                         tempaeraturDescription.textContent = `Ogólnie ${description}`;
@@ -134,8 +136,16 @@ window.addEventListener('load', () => {
                         tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
                         feelsLike(data.main.feels_like);
                         }
+                });
+
+                changeBackgroundButton.addEventListener('click', () => {
+                    let allbackground = ['01d', '01n', '02d', '02n', '03d', '03n', '04d','04n','09d', '09n', '10d', '10n', '11d', '11n', '13d', '13n', '50d', '50n'];
+                    let item = allbackground[Math.floor(Math.random() * allbackground.length)];
+                    document.body.style.backgroundImage = `url(background/${item}.jpg)`;
                 })
+
                 feelsLike(data.main.feels_like);
+                document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
             });
         });
     }
