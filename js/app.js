@@ -4,7 +4,11 @@ window.addEventListener('load', () => {
     let key;
     let currentDate = new Date();
 
-    let tempaeraturDescription = document.querySelector('.temperature-description');
+    let tempaeraturDescription = document.querySelector('.temperature-description-general');
+    let tempaeraturDescriptionFeelsLike = document.querySelector('.temperature-description-feels-like');
+    let tempaeraturDescriptionWindSpeed = document.querySelector('.temperature-description-wind-speed');
+    let tempaeraturDescriptionHumidity = document.querySelector('.temperature-description-humidity');
+    
     let temperaturDegree = document.querySelector('.temperature-degree');
     let locationTimezone = document.querySelector('.location-timezone');
     let presentDate = document.querySelector('.present-date');
@@ -12,6 +16,9 @@ window.addEventListener('load', () => {
     let temperatureSection = document.querySelector('.temperature-section');
     let temperatureSpan = document.querySelector('.temperature-section span');
     let iconElement = document.querySelector(".weather-icon");
+
+    let changeDegreesButton = document.querySelector('.change-degree');
+    let changeLanguageButton = document.querySelector('.change-language');
 
     let getMonthName = function(dateObj) {
         let number = dateObj.getMonth();
@@ -72,12 +79,19 @@ window.addEventListener('load', () => {
             })
             .then(data => {
                 const { temp } = data.main;
+                const description = `${data.weather[0].description}`
                 const windSpeed = data.wind.speed;
                 const humidity = data.main.humidity;
-                const description = `${data.weather[0].description}
-                                    Feels Like: Yet o be implemented
-                                    Wind Speed: ${windSpeed} m/s
-                                    Humidity: ${humidity} %` ;
+                const feelsLike = function(fDegrees){
+                    if (temperatureSpan.textContent === 'C'){
+                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like ${Math.floor(fDegrees - 272.15)} C`;
+                    } else if (temperatureSpan.textContent === 'F') {
+                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${Math.round((fDegrees * 9)/ 5 - 459.67)} F`;
+                    } else {
+                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${fDegrees} K`
+                    }
+                };
+
                                     
                 const country = data.sys.country;
                 const region = data.name;
@@ -85,14 +99,16 @@ window.addEventListener('load', () => {
 
                 iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
                 temperaturDegree.textContent = temp;
-                tempaeraturDescription.textContent = description;
+                tempaeraturDescription.textContent = `Generally ${description}`;
+                tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
+                tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
                 locationTimezone.textContent = `${country}\\${region}`;
                     // Formula for Celsius
                     let celsius = Math.round(temp - 272.15);
                     // Formula for fahrenheit
                     let fahrenheit = Math.round((temp * 9)/ 5 - 459.67);
 
-                temperatureSection.addEventListener('click',() =>{
+                changeDegreesButton.addEventListener('click',() =>{
                     if(temperatureSpan.textContent === 'K'){
                         temperatureSpan.textContent = 'C';
                         temperaturDegree.textContent = celsius
@@ -103,7 +119,23 @@ window.addEventListener('load', () => {
                         temperatureSpan.textContent = 'K';
                         temperaturDegree.textContent = temp;
                     }
+                    feelsLike(data.main.feels_like);
                 })
+                changeLanguageButton.addEventListener('click',() =>{
+                    if (tempaeraturDescription.textContent.slice(0,3) ==='Gen'){
+                        tempaeraturDescription.textContent = `Ogólnie ${description}`;
+                        tempaeraturDescriptionFeelsLike.textContent = tempaeraturDescriptionFeelsLike.textContent.replace('Feels Like:', 'Temperatura Odczuwalna:');
+                        tempaeraturDescriptionWindSpeed.textContent = `Prędkość Wiatru:" ${windSpeed} m/s`;
+                        tempaeraturDescriptionHumidity.textContent = `Wilgotność ${humidity} %`
+                        } else {
+                        temperaturDegree.textContent = temp;
+                        tempaeraturDescription.textContent = `Generally ${description}`;
+                        tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
+                        tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
+                        feelsLike(data.main.feels_like);
+                        }
+                })
+                feelsLike(data.main.feels_like);
             });
         });
     }
