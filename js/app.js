@@ -17,9 +17,23 @@ window.addEventListener('load', () => {
     let temperatureSpan = document.querySelector('.temperature-section span');
     let iconElement = document.querySelector(".weather-icon");
 
+    let tomorrowWeekday = document.querySelector('.day1-weekday');
+    let tomorrowIcon = document.querySelector('.day1-icon');
+    let tomorrowTemperature = document.querySelector('.day1-temperature')
+    let dayAfterTomorowWeekday = document.querySelector('.day2-weekday');
+    let dayAfterTomorowIcon = document.querySelector('.day2-icon');
+    let dayAfterTomorowTemperature = document.querySelector('.day2-temperature');
+    let twoDaysLaterWeekday = document.querySelector('.day3-weekday');
+    let twoDaysLaterIcon = document.querySelector('.day3-icon');
+    let twoDaysLaterTemperature = document.querySelector('.day3-temperature');
+
     let changeBackgroundButton = document.querySelector('.change-background');
     let changeLanguageButton = document.querySelector('.change-language');
     let changeDegreesButton = document.querySelector('.change-degree');
+
+    let currentPostion = document.querySelector('.coordinates');
+
+    // Time calculations
 
     let getMonthName = function(dateObj) {
         let number = dateObj.getMonth();
@@ -53,6 +67,7 @@ window.addEventListener('load', () => {
         }
         return abbr[number];
     }
+
     let dayOfWeek = getDayOfweek(currentDate);
     let dayOfMonth = currentDate.getDate();
     let month = getMonthName(currentDate);
@@ -60,7 +75,58 @@ window.addEventListener('load', () => {
     let minutes = currentDate.getMinutes();
 
     presentTime.textContent = `${hours}:${minutes}`;
-    presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`; 
+    presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+    
+    // Forecats data
+    let tomorrow;
+    let dayAfterTomorow
+    let twoDaysLater;
+
+    switch(dayOfWeek){
+        case 'Su.':
+            tomorrow = 'Mo.';
+            dayAfterTomorow = 'Tu.';
+            twoDaysLater = 'We.';
+            break;
+        case 'Mo.':
+            tomorrow = 'Tu.';
+            dayAfterTomorow = 'We.';
+            twoDaysLater = 'Th.';
+            break;
+        case 'Tu.':
+            tomorrow = 'We.';
+            dayAfterTomorow = 'Th.';
+            twoDaysLater = 'Fr.';
+            break;
+        case 'We.':
+            tomorrow = 'Th.';
+            dayAfterTomorow = 'Fr.';
+            twoDaysLater = 'Sa.';
+            break;
+        case 'Th.':
+            tomorrow = 'Fr.';
+            dayAfterTomorow = 'Sa.';
+            twoDaysLater = 'Su.';
+            break;
+        case 'Fr.':
+            tomorrow ='Sa.';
+            dayAfterTomorow = 'Su.';
+            twoDaysLater ='Mo.';
+            break;
+        case 'Sa.':
+            tomorrow = 'Su.';
+            dayAfterTomorow ='Mo.';
+            twoDaysLater = 'Tu.';
+            break;     
+    }
+
+    // Degree calculations
+    function convertToCelsius(kelvins){
+        return Math.round(kelvins - 272.15);
+    }
+    function convertToFahrenheit(kelvins){
+        return Math.round((kelvins * 9)/ 5 - 459.67);
+    }
 
 
     if(navigator.geolocation){
@@ -72,7 +138,9 @@ window.addEventListener('load', () => {
             console.log(currentDate)
 
             let api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
+            let dailyApi = ` https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`;
             console.log(api);
+            console.log(dailyApi);
             
             fetch(api)
             .then(response => {
@@ -85,14 +153,13 @@ window.addEventListener('load', () => {
                 const humidity = data.main.humidity;
                 const feelsLike = function(fDegrees){
                     if (temperatureSpan.textContent === 'C'){
-                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like ${Math.floor(fDegrees - 272.15)} C`;
+                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like ${convertToCelsius(fDegrees)} C`;
                     } else if (temperatureSpan.textContent === 'F') {
-                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${Math.round((fDegrees * 9)/ 5 - 459.67)} F`;
+                        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToFahrenheit(fDegrees)} F`;
                     } else {
                         return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${fDegrees} K`
                     }
                 };
-
                                     
                 const country = data.sys.country;
                 const region = data.name;
@@ -104,18 +171,16 @@ window.addEventListener('load', () => {
                 tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
                 tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
                 locationTimezone.textContent = `${country}\\${region}`;
-                    // Formula for Celsius
-                    let celsius = Math.round(temp - 272.15);
-                    // Formula for fahrenheit
-                    let fahrenheit = Math.round((temp * 9)/ 5 - 459.67);
+                
+                currentPostion.innerHTML = `Longitude: ${Math.round(long)} <br> Latitude: ${Math.round(lat)}`;
 
                 changeDegreesButton.addEventListener('click',() =>{
                     if(temperatureSpan.textContent === 'K'){
                         temperatureSpan.textContent = 'C';
-                        temperaturDegree.textContent = celsius
+                        temperaturDegree.textContent = convertToCelsius(temp)
                     } else if (temperatureSpan.textContent === 'C'){
                         temperatureSpan.textContent = 'F';
-                        temperaturDegree.textContent = fahrenheit;
+                        temperaturDegree.textContent = convertToFahrenheit(temp);
                     } else {
                         temperatureSpan.textContent = 'K';
                         temperaturDegree.textContent = temp;
@@ -147,6 +212,23 @@ window.addEventListener('load', () => {
                 feelsLike(data.main.feels_like);
                 document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
             });
+
+            fetch(dailyApi)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                tomorrowWeekday.innerHTML = tomorrow;
+                tomorrowIcon.innerHTML = `<img src="./icons/${data.daily[1].weather[0].icon}.png"/>`;
+                tomorrowTemperature.innerHTML = `${convertToCelsius(data.daily[1].temp.day)} C`
+                dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+                dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.daily[2].weather[0].icon}.png"/>`;
+                dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(data.daily[2].temp.day)} C`
+                twoDaysLaterWeekday.innerHTML = twoDaysLater;
+                twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.daily[3].weather[0].icon}.png"/>`;
+                twoDaysLaterTemperature.innerHTML = `${convertToCelsius(data.daily[3].temp.day)} C`;
+            });
+            
         });
     }
 })
