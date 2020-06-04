@@ -20,3 +20,14 @@
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
+
+  #map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }
+
+   input[type="text"]{
+     height: 50px;
+     width: 600px;
+     background: #e7e7e7;
+   }
