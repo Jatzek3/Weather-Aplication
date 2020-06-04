@@ -8,6 +8,14 @@ let temp;
 let description;
 let windSpeed;
 let humidity;
+let tomorrow;
+let dayAfterTomorow
+let twoDaysLater;
+let dayOfWeek;
+let dayOfMonth;
+let month;
+let hours;
+let minutes;
 
 let currentDate = new Date();
 
@@ -78,19 +86,16 @@ let getDayOfweek = function(dateObj) {
     return abbr[number];
 }
 
-let dayOfWeek = getDayOfweek(currentDate);
-let dayOfMonth = currentDate.getDate();
-let month = getMonthName(currentDate);
-let hours = currentDate.getHours();
-let minutes = currentDate.getMinutes();
+dayOfWeek = getDayOfweek(currentDate);
+dayOfMonth = currentDate.getDate();
+month = getMonthName(currentDate);
+hours = currentDate.getHours();
+minutes = currentDate.getMinutes();
 
 presentTime.textContent = `${hours}:${minutes}`;
 presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
 // Forecats data
-let tomorrow;
-let dayAfterTomorow
-let twoDaysLater;
 
 switch(dayOfWeek){
     case 'Su.':
@@ -129,8 +134,6 @@ switch(dayOfWeek){
         twoDaysLater = 'Tu.';
         break;     
 }
-
-
 // Degree calculations
 function convertToCelsius(kelvins){
     return Math.round(kelvins - 272.15);
@@ -244,9 +247,38 @@ changeBackgroundButton.addEventListener('click', () => {
 submitButton.addEventListener('click', function(){
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.value}&appid=8aa363e5bc059e6feaf9240302052c40`)
     .then(response => response.json())
-    .then(data => 
-    // Place the code for weather Here
-        console.log(data))
+    .then(data => {
+        console.log(data)
+        country = data.city.country;
+        region = data.city.name;
+        locationTimezone.textContent = `${country}\\${region}`;
+
+        description = data.list[0].weather[0].description;
+        tempaeraturDescription.textContent = `Generally ${description}`;
+
+        temp  = data.list[0].main.temp;
+        temperaturDegree.textContent = temp;
+
+        windSpeed = data.list[0].wind.speed;
+        tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
+        humidity = data.list[0].main.humidity;
+        tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
+
+        iconID = data.list[0].weather[0].icon;
+        document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
+        feelsLike(data.list[0].main.feels_like)
+
+        // tomorrowWeekday.innerHTML = tomorrow; TBD
+        tomorrowIcon.innerHTML = `<img src="./icons/${data.list[8].weather[0].icon}.png"/>`;
+        tomorrowTemperature.innerHTML = `${convertToCelsius(data.list[8].main.temp)} C`
+        // dayAfterTomorowWeekday.innerHTML = dayAfterTomorow; TBD
+        dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.list[16].weather[0].icon}.png"/>`;
+        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(data.list[16].main.temp)} C`
+        // twoDaysLaterWeekday.innerHTML = twoDaysLater; TBD
+        twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
+        twoDaysLaterTemperature.innerHTML = `${convertToCelsius(data.list[24].main.temp)} C`;
+
+    })
 
 
     .catch(err => alert("Wrong city name!"))
