@@ -20,6 +20,8 @@ let month;
 let hours;
 let minutes;
 let tempFeels;
+let marker;
+let mymap;
 
 let currentDate = new Date();
 
@@ -118,8 +120,8 @@ presentTime.textContent = `${hours}:${minutes}`;
 presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
 function generateMap(latitude,longitude){
-    var mymap = L.map('mapid').setView([longitude, latitude], 1);
-    var marker = L.marker([longitude,latitude ]).addTo(mymap);
+    mymap = L.map('mapid').setView([longitude, latitude], 1);
+    marker = L.marker([longitude,latitude ]).addTo(mymap);
     // marker.setLatLNG([longitude, latitude]);
     const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
     const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -224,7 +226,6 @@ if(navigator.geolocation){
 
         let api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
         let dailyApi = ` https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`;
-        // let googleMapsApi = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOL0Tzq6q9NAmt4xJOf8PqB4zYwBqvu4&callback=initMap"
         console.log(api);
         console.log(dailyApi);
         
@@ -251,7 +252,7 @@ if(navigator.geolocation){
             tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
             locationTimezone.textContent = `${country}\\${region}`;
             
-            currentPostion.innerHTML = `Longitude: ${Math.round(long)} <br> Latitude: ${Math.round(lat)}`;
+            currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
 
 
             tempFeels = data.main.feels_like;
@@ -334,9 +335,11 @@ submitButton.addEventListener('click', function(){
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.value}&appid=8aa363e5bc059e6feaf9240302052c40`)
     .then(response => response.json())
     .then(data => {
+        console.log(data);
 
-        lat = data.city.lat;
-        long = data.city.long;
+        lat = data.city.coord.lat;
+        long = data.city.coord.lon;
+        console.log(lat, long)
         let localTime = new Date;
         localTime.setUTCSeconds(localTime.getUTCSeconds() - 7200 + data.city.timezone);
         currentDate = localTime;
@@ -353,16 +356,15 @@ submitButton.addEventListener('click', function(){
         presentTime.textContent = `${hours}:${minutes}`;
         presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
-        console.log(data)
         country = data.city.country;
         region = data.city.name;
         locationTimezone.textContent = `${country}\\${region}`;
 
         description = data.list[0].weather[0].description;
         tempaeraturDescription.textContent = `Generally ${description}`;
-
-        temp  =convertToCelsius(data.list[0].main.temp);
-        temperaturDegree.textContent = temp;
+ 
+        temp = data.list[0].main.temp;
+        temperaturDegree.textContent = convertToCelsius(temp);
 
         windSpeed = data.list[0].wind.speed;
         tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
@@ -388,8 +390,8 @@ submitButton.addEventListener('click', function(){
         twoDaysLaterDegrees = data.list[24].main.temp;
         twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
         twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
-        marker.setLatLng([lat,long])
-
+        marker.setLatLng([lat, long]);
+        currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
     })
 })
 
