@@ -9,13 +9,17 @@ let description;
 let windSpeed;
 let humidity;
 let tomorrow;
+let tomorrowTempDegrees
 let dayAfterTomorow
+let dayAfterTomorowDegrees
 let twoDaysLater;
+let twoDaysLaterDegrees;
 let dayOfWeek;
 let dayOfMonth;
 let month;
 let hours;
 let minutes;
+let tempFeels;
 
 let currentDate = new Date();
 
@@ -38,12 +42,15 @@ let inputValue = document.querySelector('.inputValue')
 let tomorrowWeekday = document.querySelector('.day1-weekday');
 let tomorrowIcon = document.querySelector('.day1-icon');
 let tomorrowTemperature = document.querySelector('.day1-temperature')
+let tomorrowTemperatureSpan = document.querySelector('.day1-temperature span')
 let dayAfterTomorowWeekday = document.querySelector('.day2-weekday');
 let dayAfterTomorowIcon = document.querySelector('.day2-icon');
 let dayAfterTomorowTemperature = document.querySelector('.day2-temperature');
+let dayAfterTomorowTemperatureSpan = document.querySelector('.day2-temperature span');
 let twoDaysLaterWeekday = document.querySelector('.day3-weekday');
 let twoDaysLaterIcon = document.querySelector('.day3-icon');
 let twoDaysLaterTemperature = document.querySelector('.day3-temperature');
+let twoDaysLaterTemperatureSpan = document.querySelector('.day3-temperature span');
 
 let changeBackgroundButton = document.querySelector('.change-background');
 let changeLanguageButton = document.querySelector('.change-language');
@@ -56,34 +63,48 @@ let currentPostion = document.querySelector('.coordinates');
 let getMonthName = function(dateObj) {
     let number = dateObj.getMonth();
     let abbr = {
-        0: 'January',
-        1: 'February',
-        2: 'March',
-        3: 'April',
-        4: 'May',
-        5: 'June',
-        6: 'July',
-        7: 'August',
-        8: 'September',
-        9: 'October',
-        10:'November',
-        11: 'December',
+        0: ['January', 'Styczeń'],
+        1: ['February', 'Luty'],
+        2: ['March', 'Marzec'],
+        3: ['April', 'Kwiecień'],
+        4: ['May', 'Maj'],
+        5: ['June', 'Czerwiec'],
+        6: ['July', 'Lipiec'],
+        7: ['August', 'Sierpień'],
+        8: ['September', 'Wrzesień'],
+        9: ['October', 'Październik'],
+        10:['November', 'Listopad'],
+        11:['December', 'Grudzień']
+    }    
+    if (tempaeraturDescription.textContent.slice(0,2) ==='Og'){
+        month = abbr[number][1];
+        return abbr[number][1];
+    } else {
+    month = abbr[number][0];
+    return abbr[number][0];
     }
-    return abbr[number];
 }
 
 let getDayOfweek = function(dateObj) {
     let number = dateObj.getDay();
     let abbr = {
-        0: 'Su.',
-        1: 'Mo.',
-        2: 'Tu.',
-        3: 'We.',
-        4: 'Th.',
-        5: 'Fr.',
-        6: 'Sa.',
+        0: ['Su.', 'Nd.'],
+        1: ['Mo.', 'Pn.'],
+        2: ['Tu.', 'Wt.'],
+        3: ['We.', 'Śr.'],
+        4: ['Th.', 'Czw.'],
+        5: ['Fr.', 'Pt.'],
+        6: ['Sa.', 'So.'],
+    }    
+    if (tempaeraturDescription.textContent.slice(0,2) ==='Og'){
+        console.log(abbr[number][1]);
+        dayOfWeek = abbr[number][1];
+        return abbr[number][1];
+    } else {
+    console.log(abbr[number][0]);
+    dayOfWeek = abbr[number][0];
+    return abbr[number][0];
     }
-    return abbr[number];
 }
 
 dayOfWeek = getDayOfweek(currentDate);
@@ -91,48 +112,85 @@ dayOfMonth = currentDate.getDate();
 month = getMonthName(currentDate);
 hours = currentDate.getHours();
 minutes = currentDate.getMinutes();
+futureDays(dayOfWeek);
 
 presentTime.textContent = `${hours}:${minutes}`;
 presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
 // Forecats data
-
-switch(dayOfWeek){
-    case 'Su.':
-        tomorrow = 'Mo.';
-        dayAfterTomorow = 'Tu.';
-        twoDaysLater = 'We.';
-        break;
-    case 'Mo.':
-        tomorrow = 'Tu.';
-        dayAfterTomorow = 'We.';
-        twoDaysLater = 'Th.';
-        break;
-    case 'Tu.':
-        tomorrow = 'We.';
-        dayAfterTomorow = 'Th.';
-        twoDaysLater = 'Fr.';
-        break;
-    case 'We.':
-        tomorrow = 'Th.';
-        dayAfterTomorow = 'Fr.';
-        twoDaysLater = 'Sa.';
-        break;
-    case 'Th.':
-        tomorrow = 'Fr.';
-        dayAfterTomorow = 'Sa.';
-        twoDaysLater = 'Su.';
-        break;
-    case 'Fr.':
-        tomorrow ='Sa.';
-        dayAfterTomorow = 'Su.';
-        twoDaysLater ='Mo.';
-        break;
-    case 'Sa.':
-        tomorrow = 'Su.';
-        dayAfterTomorow ='Mo.';
-        twoDaysLater = 'Tu.';
-        break;     
+function futureDays(abbr){
+    switch(abbr){
+        case 'Su.':
+            tomorrow = 'Monday';
+            dayAfterTomorow = 'Tuesday';
+            twoDaysLater = 'Wednesday';
+            break;
+        case 'Mo.':
+            tomorrow = 'Tuesday';
+            dayAfterTomorow = 'Wednesday';
+            twoDaysLater = 'Thursday';
+            break;
+        case 'Tu.':
+            tomorrow = 'Wednesday';
+            dayAfterTomorow = 'Thursday';
+            twoDaysLater = 'Friday';
+            break;
+        case 'We.':
+            tomorrow = 'Thursday';
+            dayAfterTomorow = 'Friday';
+            twoDaysLater = 'Saturday';
+            break;
+        case 'Th.':
+            tomorrow = 'Friday';
+            dayAfterTomorow = 'Saturday';
+            twoDaysLater = 'Sunday';
+            break;
+        case 'Fr.':
+            tomorrow ='Saturday';
+            dayAfterTomorow = 'Sunday';
+            twoDaysLater ='Monday';
+            break;
+        case 'Sa.':
+            tomorrow = 'Sunday';
+            dayAfterTomorow ='Monday';
+            twoDaysLater = 'Tuesday';
+            break;
+        case 'Nd.':
+            tomorrow = 'Poniedziałek';
+            dayAfterTomorow = 'Wtorek';
+            twoDaysLater = 'Środa';
+            break;
+        case 'Pn.':
+            tomorrow = 'Wtorek';
+            dayAfterTomorow = 'Środa';
+            twoDaysLater = 'Czwartek';
+            break;
+        case 'Wt.':
+            tomorrow = 'Środa';
+            dayAfterTomorow = 'Czwartek';
+            twoDaysLater = 'Piątek';
+            break;
+        case 'Śr.':
+            tomorrow = 'Czwartek';
+            dayAfterTomorow = 'Piątek';
+            twoDaysLater = 'Sobota';
+            break;
+        case 'Czw.':
+            tomorrow = 'Piątek';
+            dayAfterTomorow = 'Sobota';
+            twoDaysLater = 'Niedziela';
+            break;
+        case 'Pt.':
+            tomorrow = 'Sobota';
+            dayAfterTomorow = 'Nidziela';
+            twoDaysLater = 'Poniedziek';
+            break;
+        case 'So.':
+            tomorrow = 'Niedziela';
+            dayAfterTomorow = 'Poniedziale';
+            twoDaysLater = 'Wtorek';
+            break;
+    }
 }
 // Degree calculations
 function convertToCelsius(kelvins){
@@ -142,13 +200,7 @@ function convertToFahrenheit(kelvins){
     return Math.round((kelvins * 9)/ 5 - 459.67);
 }
 function feelsLike(fDegrees){
-    if (temperatureSpan.textContent === 'C'){
-        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like ${convertToCelsius(fDegrees)} C`;
-    } else if (temperatureSpan.textContent === 'F') {
-        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToFahrenheit(fDegrees)} F`;
-    } else {
-        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${fDegrees} K`
-    }
+        return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToCelsius(fDegrees)} C`;
 };
 
 if(navigator.geolocation){
@@ -180,8 +232,10 @@ if(navigator.geolocation){
             region = data.name;
             iconID = data.weather[0].icon;
 
+
+
             iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
-            temperaturDegree.textContent = temp;
+            temperaturDegree.textContent = convertToCelsius(temp);
             tempaeraturDescription.textContent = `Generally ${description}`;
             tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
             tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
@@ -190,7 +244,7 @@ if(navigator.geolocation){
             currentPostion.innerHTML = `Longitude: ${Math.round(long)} <br> Latitude: ${Math.round(lat)}`;
 
 
-            feelsLike(data.main.feels_like);
+            tempFeels = data.main.feels_like;
             document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
         });
 
@@ -200,41 +254,62 @@ if(navigator.geolocation){
         })
         .then(data => {
             tomorrowWeekday.innerHTML = tomorrow;
+            tomorrowTempDegrees = data.daily[1].temp.day;
             tomorrowIcon.innerHTML = `<img src="./icons/${data.daily[1].weather[0].icon}.png"/>`;
-            tomorrowTemperature.innerHTML = `${convertToCelsius(data.daily[1].temp.day)} C`
+            tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
             dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+            dayAfterTomorowDegrees = data.daily[2].temp.day;
             dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.daily[2].weather[0].icon}.png"/>`;
-            dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(data.daily[2].temp.day)} C`
+            dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
             twoDaysLaterWeekday.innerHTML = twoDaysLater;
+            twoDaysLaterDegrees = data.daily[3].temp.day;
             twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.daily[3].weather[0].icon}.png"/>`;
-            twoDaysLaterTemperature.innerHTML = `${convertToCelsius(data.daily[3].temp.day)} C`;
+            twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
         });
 
     });
 }
 changeDegreesButton.addEventListener('click',() =>{
-    if(temperatureSpan.textContent === 'K'){
+    if(temperatureSpan.textContent === 'F'){
         temperatureSpan.textContent = 'C';
-        temperaturDegree.textContent = convertToCelsius(temp)
+        temperaturDegree.textContent = convertToCelsius(temp);
+        tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
+        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
+        twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
     } else if (temperatureSpan.textContent === 'C'){
         temperatureSpan.textContent = 'F';
         temperaturDegree.textContent = convertToFahrenheit(temp);
-    } else {
-        temperatureSpan.textContent = 'K';
-        temperaturDegree.textContent = temp;
+        tomorrowTemperature.innerHTML = `${convertToFahrenheit(tomorrowTempDegrees)}`
+        dayAfterTomorowTemperature.innerHTML = `${convertToFahrenheit(dayAfterTomorowDegrees)}`;
+        twoDaysLaterTemperature.innerHTML = `${convertToFahrenheit(twoDaysLaterDegrees)}`;
     }
 });
+
 changeLanguageButton.addEventListener('click',() =>{
     if (tempaeraturDescription.textContent.slice(0,3) ==='Gen'){
         tempaeraturDescription.textContent = `Ogólnie ${description}`;
-        tempaeraturDescriptionFeelsLike.textContent = tempaeraturDescriptionFeelsLike.textContent.replace('Feels Like:', 'Temperatura Odczuwalna:');
+        tempaeraturDescriptionFeelsLike.textContent = `Temperatura Oczuwalna: ${convertToCelsius(tempFeels)} C`;
         tempaeraturDescriptionWindSpeed.textContent = `Prędkość Wiatru:" ${windSpeed} m/s`;
-        tempaeraturDescriptionHumidity.textContent = `Wilgotność ${humidity} %`
+        tempaeraturDescriptionHumidity.textContent = `Wilgotność ${humidity} %`;
+        getMonthName(currentDate);
+        getDayOfweek(currentDate);
+        presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+        futureDays(dayOfWeek);
+        tomorrowWeekday.innerHTML = tomorrow;
+        dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+        twoDaysLaterWeekday.innerHTML = twoDaysLater;
         } else {
-        temperaturDegree.textContent = temp;
         tempaeraturDescription.textContent = `Generally ${description}`;
+        tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToCelsius(tempFeels)} C`;
         tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
         tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
+        getMonthName(currentDate);
+        getDayOfweek(currentDate);
+        presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+        futureDays(dayOfWeek);
+        tomorrowWeekday.innerHTML = tomorrow;
+        dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+        twoDaysLaterWeekday.innerHTML = twoDaysLater;
         }
 });
 changeBackgroundButton.addEventListener('click', () => {
@@ -248,6 +323,23 @@ submitButton.addEventListener('click', function(){
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.value}&appid=8aa363e5bc059e6feaf9240302052c40`)
     .then(response => response.json())
     .then(data => {
+
+        let localTime = new Date;
+        localTime.setUTCSeconds(localTime.getUTCSeconds() - 7200 + data.city.timezone);
+        currentDate = localTime;
+        console.log(localTime)
+
+        dayOfWeek = getDayOfweek(localTime);
+        futureDays(dayOfWeek);
+        dayOfMonth = localTime.getDate();
+        month = getMonthName(localTime);
+        hours = localTime.getHours();
+        minutes = localTime.getMinutes();
+
+
+        presentTime.textContent = `${hours}:${minutes}`;
+        presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+
         console.log(data)
         country = data.city.country;
         region = data.city.name;
@@ -256,7 +348,7 @@ submitButton.addEventListener('click', function(){
         description = data.list[0].weather[0].description;
         tempaeraturDescription.textContent = `Generally ${description}`;
 
-        temp  = data.list[0].main.temp;
+        temp  =convertToCelsius(data.list[0].main.temp);
         temperaturDegree.textContent = temp;
 
         windSpeed = data.list[0].wind.speed;
@@ -265,21 +357,24 @@ submitButton.addEventListener('click', function(){
         tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
 
         iconID = data.list[0].weather[0].icon;
-        document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
-        feelsLike(data.list[0].main.feels_like)
+        iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
 
-        // tomorrowWeekday.innerHTML = tomorrow; TBD
+        iconID = data.list[0].weather[0].icon;
+        document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
+        tempFeels = data.list[0].main.feels_like;
+
+        tomorrowWeekday.innerHTML = tomorrow;
+        tomorrowTempDegrees = data.list[8].main.temp;
         tomorrowIcon.innerHTML = `<img src="./icons/${data.list[8].weather[0].icon}.png"/>`;
-        tomorrowTemperature.innerHTML = `${convertToCelsius(data.list[8].main.temp)} C`
-        // dayAfterTomorowWeekday.innerHTML = dayAfterTomorow; TBD
+        tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
+        dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+        dayAfterTomorowDegrees = data.list[16].main.temp;
         dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.list[16].weather[0].icon}.png"/>`;
-        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(data.list[16].main.temp)} C`
-        // twoDaysLaterWeekday.innerHTML = twoDaysLater; TBD
+        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`
+        twoDaysLaterWeekday.innerHTML = twoDaysLater; 
+        twoDaysLaterDegrees = data.list[24].main.temp;
         twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
-        twoDaysLaterTemperature.innerHTML = `${convertToCelsius(data.list[24].main.temp)} C`;
+        twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
 
     })
-
-
-    .catch(err => alert("Wrong city name!"))
 })
