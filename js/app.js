@@ -117,6 +117,16 @@ futureDays(dayOfWeek);
 presentTime.textContent = `${hours}:${minutes}`;
 presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
+function generateMap(latitude,longitude){
+    var mymap = L.map('mapid').setView([longitude, latitude], 1);
+    var marker = L.marker([longitude,latitude ]).addTo(mymap);
+    // marker.setLatLNG([longitude, latitude]);
+    const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
+    const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const tiles = L.tileLayer(tileUrl,{attribution});
+    tiles.addTo(mymap);
+}
+
 // Forecats data
 function futureDays(abbr){
     switch(abbr){
@@ -246,6 +256,7 @@ if(navigator.geolocation){
 
             tempFeels = data.main.feels_like;
             document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
+            generateMap(long, lat);
         });
 
         fetch(dailyApi)
@@ -324,6 +335,8 @@ submitButton.addEventListener('click', function(){
     .then(response => response.json())
     .then(data => {
 
+        lat = data.city.lat;
+        long = data.city.long;
         let localTime = new Date;
         localTime.setUTCSeconds(localTime.getUTCSeconds() - 7200 + data.city.timezone);
         currentDate = localTime;
@@ -375,6 +388,10 @@ submitButton.addEventListener('click', function(){
         twoDaysLaterDegrees = data.list[24].main.temp;
         twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
         twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
+        marker.setLatLng([lat,long])
 
     })
 })
+
+
+
