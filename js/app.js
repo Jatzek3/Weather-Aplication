@@ -1,28 +1,7 @@
-let long;
-let lat;
-let key;
-let country;
-let region;
-let iconID;
-let temp;
+let long, lat, key, country, region, iconID, temp, windSpeed, humidity, timeOfDay;
+let tomorrow, tomorrowTempDegrees, dayAfterTomorow, dayAfterTomorowDegrees, twoDaysLater, season;
+let twoDaysLaterDegrees, dayOfWeek, dayOfMonth, month, hours, minutes, tempFeels, marker, mymap;
 let description;
-let windSpeed;
-let humidity;
-let tomorrow;
-let tomorrowTempDegrees
-let dayAfterTomorow
-let dayAfterTomorowDegrees
-let twoDaysLater;
-let twoDaysLaterDegrees;
-let dayOfWeek;
-let dayOfMonth;
-let month;
-let hours;
-let minutes;
-let tempFeels;
-let marker;
-let mymap;
-
 let currentDate = new Date();
 
 let tempaeraturDescription = document.querySelector('.temperature-description-general');
@@ -62,7 +41,7 @@ let currentPostion = document.querySelector('.coordinates');
 
 // Time calculations
 
-let getMonthName = function(dateObj) {
+function getMonthName(dateObj) {
     let number = dateObj.getMonth();
     let abbr = {
         0: ['January', 'Styczeń'],
@@ -86,8 +65,7 @@ let getMonthName = function(dateObj) {
     return abbr[number][0];
     }
 }
-
-let getDayOfweek = function(dateObj) {
+function getDayOfweek(dateObj) {
     let number = dateObj.getDay();
     let abbr = {
         0: ['Su.', 'Nd.'],
@@ -108,19 +86,28 @@ let getDayOfweek = function(dateObj) {
     return abbr[number][0];
     }
 }
+function generateDate(dateObj) {
+    dayOfWeek = getDayOfweek(dateObj);
+    dayOfMonth = dateObj.getDate();
+    month = getMonthName(dateObj);
+    hours = dateObj.getHours();
+    minutes = dateObj.getMinutes();
+}
+function getTimeOfDay(dateObj) {
+    if (dateObj.getHours() > 5 && dateObj.getHours() < 9 ){
+        return timeOfDay = 'sunrise';
+    } else if (dateObj.getHours() >= 9 && dateObj.getHours() < 18){
+        return timeOfDay = 'day';
+    } else if (dateObj.getHours() >= 18 && dateObj.getHours() < 23){
+        return timeOfDay = 'sunrise';
+    }
+    return timeOfDay = 'night';
+}
 
-dayOfWeek = getDayOfweek(currentDate);
-dayOfMonth = currentDate.getDate();
-month = getMonthName(currentDate);
-hours = currentDate.getHours();
-minutes = currentDate.getMinutes();
-futureDays(dayOfWeek);
 
-presentTime.textContent = `${hours}:${minutes}`;
-presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
 function generateMap(latitude,longitude){
-    mymap = L.map('mapid').setView([longitude, latitude], 1);
+    mymap = L.map('mapid').setView([longitude, latitude], 0);
     marker = L.marker([longitude,latitude ]).addTo(mymap);
     // marker.setLatLNG([longitude, latitude]);
     const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
@@ -215,89 +202,143 @@ function feelsLike(fDegrees){
         return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToCelsius(fDegrees)} C`;
 };
 
-if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition
-    (postion => {
-        long = postion.coords.longitude;
-        lat = postion.coords.latitude;
-        key = '8aa363e5bc059e6feaf9240302052c40';
-        
-        console.log(currentDate)
-
-        let api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
-        let dailyApi = ` https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`;
-        console.log(api);
-        console.log(dailyApi);
-        
-        fetch(api)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            temp  = data.main.temp;
-            description = `${data.weather[0].description}`
-            windSpeed = data.wind.speed;
-            humidity = data.main.humidity;
-                                
-            country = data.sys.country;
-            region = data.name;
-            iconID = data.weather[0].icon;
-
-
-
-            iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
-            temperaturDegree.textContent = convertToCelsius(temp);
-            tempaeraturDescription.textContent = `Generally ${description}`;
-            tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
-            tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
-            locationTimezone.textContent = `${country}\\${region}`;
-            
-            currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
-
-
-            tempFeels = data.main.feels_like;
-            document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
-            generateMap(long, lat);
-        });
-
-        fetch(dailyApi)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            tomorrowWeekday.innerHTML = tomorrow;
-            tomorrowTempDegrees = data.daily[1].temp.day;
-            tomorrowIcon.innerHTML = `<img src="./icons/${data.daily[1].weather[0].icon}.png"/>`;
-            tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
-            dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
-            dayAfterTomorowDegrees = data.daily[2].temp.day;
-            dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.daily[2].weather[0].icon}.png"/>`;
-            dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
-            twoDaysLaterWeekday.innerHTML = twoDaysLater;
-            twoDaysLaterDegrees = data.daily[3].temp.day;
-            twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.daily[3].weather[0].icon}.png"/>`;
-            twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
-        });
-
-    });
-}
-changeDegreesButton.addEventListener('click',() =>{
-    if(temperatureSpan.textContent === 'F'){
-        temperatureSpan.textContent = 'C';
-        temperaturDegree.textContent = convertToCelsius(temp);
-        tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
-        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
-        twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
-    } else if (temperatureSpan.textContent === 'C'){
-        temperatureSpan.textContent = 'F';
-        temperaturDegree.textContent = convertToFahrenheit(temp);
-        tomorrowTemperature.innerHTML = `${convertToFahrenheit(tomorrowTempDegrees)}`
-        dayAfterTomorowTemperature.innerHTML = `${convertToFahrenheit(dayAfterTomorowDegrees)}`;
-        twoDaysLaterTemperature.innerHTML = `${convertToFahrenheit(twoDaysLaterDegrees)}`;
+function getSeason(dateObj){
+    if (dateObj.getMonth() >= 2 && dateObj.getMonth() < 5){
+        season = 'Spring';
+    } else if (dateObj.getMonth() >= 5 && dateObj.getMonth() < 8){
+        season = 'Summer';
+    } else if (dateObj.getMonth() >= 8 && dateObj.getMonth() > 10){
+        season = 'Autumn';
+    } else {
+        season = 'Winter';
     }
-});
+}
+generateDate(currentDate)
+futureDays(dayOfWeek);
+getTimeOfDay(currentDate);
+getSeason(currentDate);
+presentTime.textContent = `${hours}:${minutes}`;
+presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
-changeLanguageButton.addEventListener('click',() =>{
+changeDegreesButton.addEventListener('click', changeDegrees);
+
+
+
+changeLanguageButton.addEventListener('click', changeLanguage);
+changeBackgroundButton.addEventListener('click', () => {
+    let allbackground = ['01d', '01n', '02d', '02n', '03d', '03n', '04d','04n','09d', '09n', '10d', '10n', '11d', '11n', '13d', '13n', '50d', '50n'];
+    let item = allbackground[Math.floor(Math.random() * allbackground.length)];
+    document.body.style.backgroundImage = `url(background/${item}.jpg)`;
+})
+// Input field
+
+submitButton.addEventListener('click', function() {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.value}&appid=8aa363e5bc059e6feaf9240302052c40`)
+    .then(response => response.json())
+    .then(data => parseDataSearch(data)
+    )
+})
+
+
+function parseDataSearch(data) {
+    console.log(data);
+
+    lat = data.city.coord.lat;
+    long = data.city.coord.lon;
+    let localTime = new Date;
+    localTime.setUTCSeconds(localTime.getUTCSeconds() - 7200 + data.city.timezone);
+    currentDate = localTime;
+    dayOfWeek = getDayOfweek(localTime);
+    futureDays(dayOfWeek);
+    dayOfMonth = localTime.getDate();
+    month = getMonthName(localTime);
+    hours = localTime.getHours();
+    minutes = localTime.getMinutes();
+
+
+    presentTime.textContent = `${hours}:${minutes}`;
+    presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+
+    country = data.city.country;
+    region = data.city.name;
+    locationTimezone.textContent = `${country}\\${region}`;
+
+    description = data.list[0].weather[0].description;
+    tempaeraturDescription.textContent = `Generally ${description}`; 
+    temp = data.list[0].main.temp;
+    temperaturDegree.textContent = convertToCelsius(temp);
+    windSpeed = data.list[0].wind.speed;
+    tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
+    humidity = data.list[0].main.humidity;
+    tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
+
+    iconID = data.list[0].weather[0].icon;
+    iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
+    iconID = data.list[0].weather[0].icon;
+    document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
+    tempFeels = data.list[0].main.feels_like;
+
+    tomorrowWeekday.innerHTML = tomorrow;
+    tomorrowTempDegrees = data.list[8].main.temp;
+    tomorrowIcon.innerHTML = `<img src="./icons/${data.list[8].weather[0].icon}.png"/>`;
+    tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
+    dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+    dayAfterTomorowDegrees = data.list[16].main.temp;
+    dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.list[16].weather[0].icon}.png"/>`;
+    dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`
+    twoDaysLaterWeekday.innerHTML = twoDaysLater; 
+    twoDaysLaterDegrees = data.list[24].main.temp;
+    twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
+    twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
+
+
+    marker.setLatLng([lat, long]);
+    currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
+    console.log(description);
+    return description;
+}
+function parseDataStart(data){
+    temp  = data.main.temp;
+    description = data.weather[0].description;
+    windSpeed = data.wind.speed;
+    humidity = data.main.humidity;               
+    country = data.sys.country;
+    region = data.name;
+    iconID = data.weather[0].icon;
+
+
+
+    iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
+    temperaturDegree.textContent = convertToCelsius(temp);
+    tempaeraturDescription.textContent = `Generally ${description}`;
+    tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
+    tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
+    locationTimezone.textContent = `${country}\\${region}`;
+    
+    currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
+
+    console.log(description);
+    tempFeels = data.main.feels_like;
+    document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
+    generateMap(long, lat);
+    return description;
+}
+function parseForecast(data) {
+    tomorrowWeekday.innerHTML = tomorrow;
+    tomorrowTempDegrees = data.daily[1].temp.day;
+    tomorrowIcon.innerHTML = `<img src="./icons/${data.daily[1].weather[0].icon}.png"/>`;
+    tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
+    dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
+    dayAfterTomorowDegrees = data.daily[2].temp.day;
+    dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.daily[2].weather[0].icon}.png"/>`;
+    dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
+    twoDaysLaterWeekday.innerHTML = twoDaysLater;
+    twoDaysLaterDegrees = data.daily[3].temp.day;
+    twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.daily[3].weather[0].icon}.png"/>`;
+    twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
+}
+
+function changeLanguage() {
     if (tempaeraturDescription.textContent.slice(0,3) ==='Gen'){
         tempaeraturDescription.textContent = `Ogólnie ${description}`;
         tempaeraturDescriptionFeelsLike.textContent = `Temperatura Oczuwalna: ${convertToCelsius(tempFeels)} C`;
@@ -322,78 +363,68 @@ changeLanguageButton.addEventListener('click',() =>{
         tomorrowWeekday.innerHTML = tomorrow;
         dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
         twoDaysLaterWeekday.innerHTML = twoDaysLater;
+        console.log(description)
         }
-});
-changeBackgroundButton.addEventListener('click', () => {
-    let allbackground = ['01d', '01n', '02d', '02n', '03d', '03n', '04d','04n','09d', '09n', '10d', '10n', '11d', '11n', '13d', '13n', '50d', '50n'];
-    let item = allbackground[Math.floor(Math.random() * allbackground.length)];
-    document.body.style.backgroundImage = `url(background/${item}.jpg)`;
-})
-// Input field
-
-submitButton.addEventListener('click', function(){
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.value}&appid=8aa363e5bc059e6feaf9240302052c40`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-
-        lat = data.city.coord.lat;
-        long = data.city.coord.lon;
-        console.log(lat, long)
-        let localTime = new Date;
-        localTime.setUTCSeconds(localTime.getUTCSeconds() - 7200 + data.city.timezone);
-        currentDate = localTime;
-        console.log(localTime)
-
-        dayOfWeek = getDayOfweek(localTime);
-        futureDays(dayOfWeek);
-        dayOfMonth = localTime.getDate();
-        month = getMonthName(localTime);
-        hours = localTime.getHours();
-        minutes = localTime.getMinutes();
-
-
-        presentTime.textContent = `${hours}:${minutes}`;
-        presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
-
-        country = data.city.country;
-        region = data.city.name;
-        locationTimezone.textContent = `${country}\\${region}`;
-
-        description = data.list[0].weather[0].description;
-        tempaeraturDescription.textContent = `Generally ${description}`;
- 
-        temp = data.list[0].main.temp;
+}
+function changeDegrees(){
+    if(temperatureSpan.textContent === 'F'){
+        temperatureSpan.textContent = 'C';
         temperaturDegree.textContent = convertToCelsius(temp);
-
-        windSpeed = data.list[0].wind.speed;
-        tempaeraturDescriptionWindSpeed.textContent = `Wind Speed: ${windSpeed} m/s`;
-        humidity = data.list[0].main.humidity;
-        tempaeraturDescriptionHumidity.textContent = `Humidity: ${humidity} %`;
-
-        iconID = data.list[0].weather[0].icon;
-        iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
-
-        iconID = data.list[0].weather[0].icon;
-        document.body.style.backgroundImage = `url(background/${iconID}.jpg)`
-        tempFeels = data.list[0].main.feels_like;
-
-        tomorrowWeekday.innerHTML = tomorrow;
-        tomorrowTempDegrees = data.list[8].main.temp;
-        tomorrowIcon.innerHTML = `<img src="./icons/${data.list[8].weather[0].icon}.png"/>`;
         tomorrowTemperature.innerHTML = `${convertToCelsius(tomorrowTempDegrees)}`
-        dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
-        dayAfterTomorowDegrees = data.list[16].main.temp;
-        dayAfterTomorowIcon.innerHTML = `<img src="./icons/${data.list[16].weather[0].icon}.png"/>`;
-        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`
-        twoDaysLaterWeekday.innerHTML = twoDaysLater; 
-        twoDaysLaterDegrees = data.list[24].main.temp;
-        twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
+        dayAfterTomorowTemperature.innerHTML = `${convertToCelsius(dayAfterTomorowDegrees)}`;
         twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
-        marker.setLatLng([lat, long]);
-        currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
-    })
-})
+    } else if (temperatureSpan.textContent === 'C'){
+        temperatureSpan.textContent = 'F';
+        temperaturDegree.textContent = convertToFahrenheit(temp);
+        tomorrowTemperature.innerHTML = `${convertToFahrenheit(tomorrowTempDegrees)}`
+        dayAfterTomorowTemperature.innerHTML = `${convertToFahrenheit(dayAfterTomorowDegrees)}`;
+        twoDaysLaterTemperature.innerHTML = `${convertToFahrenheit(twoDaysLaterDegrees)}`;
+    }
+}
+function parseFlickerData(data){
+    if (data.photos.photo.len === 0){
+        return 'No photos found'
+    } else{
+        
+    }
+}
+
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition
+    (postion => {
+        long = postion.coords.longitude;
+        lat = postion.coords.latitude;
+        key = '8aa363e5bc059e6feaf9240302052c40';
+        let flickerKey = 'b9a53aa9b6e3ed91e9176b65393a1de4'
+        
+        console.log(currentDate)
+
+        let api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
+        let dailyApi = ` https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`;
+        let flickerApi = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickerKey}&tags=wallpaper&text=${timeOfDay}+${season}+&format=json&nojsoncallback=1`; // ${decription} undefined ?
+        console.log(flickerApi)
+        console.log(description)
+        
+        fetch(api)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => parseDataStart(data))
+
+        fetch(dailyApi)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => parseForecast(data))
 
 
+        .then(fetch(flickerApi)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+        }))
 
+});
+}

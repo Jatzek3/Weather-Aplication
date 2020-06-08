@@ -1,6 +1,17 @@
-#mapid { 
-  height: 260px;
-  width: 320px;
+body {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+html {
+  height: 100%
+}
+
+
+nav {
+  display: flex;
+  position: relative;
+  left:100px;
+  top: 100px;
 }
 
 .button {
@@ -16,26 +27,80 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
-  }
-  
-  .button:hover {background-color: #3e8e41}
-  
-  .button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
-
-   input[type="text"]{
-     height: 50px;
-     width: 600px;
-     background: #e7e7e7;
-   }
-body {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
 }
-html {
-    height: 100%
+  
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.current-weather{
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 50px 30px 50px 50px 30px 30px 30px 30px;
+  position: relative;
+  top: 200px;
+  left: 100px;
+}
+.location-timezone{
+  grid-row: 0/1;
+  grid-column: 0/1;
+}
+.present-date{
+  grid-row: 2/3;
+  grid-column: 0/1;
+}
+.present-time{
+  grid-row: 3/4;
+  grid-column: 0/1;
+}
+.degree-section{
+  grid-row: 5/-1;
+  grid-column: auto;
+}
+.weather-icon{
+  grid-column: 1/2;
+  grid-row: 0/3;
+} 
+.temperature-description-general{
+  grid-column: 1/2;
+  grid-row: 4/5;
+}
+.temperature-description-feels-like{
+  grid-column: 1/2;
+  grid-row: 5/6;
+}
+.temperature-description-wind-speed{
+  grid-column: 1/2;
+  grid-row: 6/7;
+}
+.temperature-description-humidity{
+  grid-column: 1/2;
+  grid-row: 7/-1;
+}
+.forecast{
+  position: relative;
+  top: 400px;
+  left:100px;
+  display: flex;
+}
+
+input[type="text"]{
+  height: 50px;
+  width: 300px;
+  background: #e7e7e7;
+}
+#mapid { 
+  height: 180px;
+  width: 320px;
+}
+.geoloacation{
+  position: absolute;
+  top: 200px;
+  right:100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
