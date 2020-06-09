@@ -1,11 +1,17 @@
 body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
+
 }
 html {
   height: 100%
 }
-
+ span {
+  font-size: 60px;
+}
+.temperature-degree{
+  font-size: 45px;
+}
 
 nav {
   display: flex;
@@ -103,4 +109,26 @@ input[type="text"]{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+.day1-weekday{
+  font-size: 30px;
+}
+.day2-weekday{
+  font-size: 30px;
+}
+.day3-weekday{
+  font-size: 30px;
+}
+.day1-temperature{
+  font-size: 45px;
+}
+.day2-temperature{
+  font-size: 45px;
+}
+.day3-temperature{
+  font-size: 45px;
+}
+.coordinates{
+  font-size: 30px;
 }
