@@ -1,8 +1,12 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
+// eslint-disable-next-line import/extensions
+import { convertToFahrenheit, convertToCelsius } from './conversion.js';
 /* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-destructuring */
+
 let long; let lat; let key; let country; let region; let iconID; let temp;
 let windSpeed; let humidity; let timeOfDay;
 let tomorrow; let tomorrowTempDegrees; let dayAfterTomorow;
@@ -11,6 +15,7 @@ let twoDaysLaterDegrees; let dayOfWeek; let dayOfMonth; let month;
 let hours; let minutes; let tempFeels; let marker; let mymap;
 let description;
 let currentDate = new Date();
+
 
 const tempaeraturDescription = document.querySelector('.temperature-description-general');
 const tempaeraturDescriptionFeelsLike = document.querySelector('.temperature-description-feels-like');
@@ -92,12 +97,6 @@ function generateDate(dateObj) {
   month = getMonthName(dateObj);
   hours = dateObj.getHours();
   minutes = dateObj.getMinutes();
-}
-function convertToCelsius(kelvins) {
-  return Math.round(kelvins - 272.15);
-}
-function convertToFahrenheit(kelvins) {
-  return Math.round((kelvins * 9) / 5 - 459.67);
 }
 function futureDays(abbr) {
   switch (abbr) {
@@ -213,7 +212,6 @@ function changeLanguage() {
     tomorrowWeekday.innerHTML = tomorrow;
     dayAfterTomorowWeekday.innerHTML = dayAfterTomorow;
     twoDaysLaterWeekday.innerHTML = twoDaysLater;
-    console.log(description);
   }
 }
 
@@ -226,9 +224,9 @@ function generateMap(latitude, longitude) {
   tiles.addTo(mymap);
 }
 
-function feelsLike(fDegrees) {
-  return tempaeraturDescriptionFeelsLike.textContent = `Feels Like: ${convertToCelsius(fDegrees)} C`;
-}
+// function feelsLike(fDegrees) {
+// return tempaeraturDescriptionFeelsLike.textContent =`Feels Like:${convertToCelsius(fDegrees)} C`;
+// }
 
 function getSeason(dateObj) {
   if (dateObj.getMonth() >= 2 && dateObj.getMonth() < 5) {
@@ -245,9 +243,13 @@ generateDate(currentDate);
 futureDays(dayOfWeek);
 getTimeOfDay(currentDate);
 getSeason(currentDate);
-presentTime.textContent = `${hours}:${minutes}`;
-presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
 
+function adjustTime() {
+  presentTime.textContent = `${hours}:${minutes}`;
+  presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
+  console.log(`${hours}:${minutes}`);
+}
+adjustTime();
 changeDegreesButton.addEventListener('click', changeDegrees);
 
 
@@ -375,11 +377,11 @@ function changeDegrees() {
   }
 }
 
-function parseFlickerData(data) {
-  if (data.photos.photo.len === 0) {
-    return 'No photos found';
-  }
-}
+// function parseFlickerData(data) {
+//   if (data.photos.photo.len === 0) {
+//     return 'No photos found';
+//   }
+// }
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((postion) => {
@@ -402,13 +404,15 @@ if (navigator.geolocation) {
 
     fetch(dailyApi)
       .then((response) => response.json())
-      .then((data) => parseForecast(data))
+      .then((data) => parseForecast(data));
 
 
-      .then(fetch(flickerApi)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        }));
+    // .then(fetch(flickerApi)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
   });
 }
+
+// window.setInterval(generateDate(currentDate), 60000);
+// window.setInterval(adjustTime, 60000);
