@@ -1,0 +1,135 @@
+body {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+}
+html {
+  height: 100%;
+  color: white;
+}
+ span {
+  font-size: 60px;
+}
+.temperature-degree{
+  font-size: 45px;
+}
+
+nav {
+  display: flex;
+  position: relative;
+  left:100px;
+  top: 100px;
+}
+
+.button {
+    width: 100px;
+    height: 30px;;
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+  
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.current-weather{
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 50px 30px 50px 50px 30px 30px 30px 30px;
+  position: relative;
+  top: 200px;
+  left: 100px;
+}
+.location-timezone{
+  grid-row: 0/1;
+  grid-column: 0/1;
+}
+.present-date{
+  grid-row: 2/3;
+  grid-column: 0/1;
+}
+.present-time{
+  grid-row: 3/4;
+  grid-column: 0/1;
+}
+.degree-section{
+  grid-row: 5/-1;
+  grid-column: auto;
+}
+.weather-icon{
+  grid-column: 1/2;
+  grid-row: 0/3;
+} 
+.temperature-description-general{
+  grid-column: 1/2;
+  grid-row: 4/5;
+}
+.temperature-description-feels-like{
+  grid-column: 1/2;
+  grid-row: 5/6;
+}
+.temperature-description-wind-speed{
+  grid-column: 1/2;
+  grid-row: 6/7;
+}
+.temperature-description-humidity{
+  grid-column: 1/2;
+  grid-row: 7/-1;
+}
+.forecast{
+  position: relative;
+  top: 400px;
+  left:100px;
+  display: flex;
+}
+
+input[type="text"]{
+  height: 50px;
+  width: 300px;
+  background: #e7e7e7;
+}
+#mapid { 
+  height: 180px;
+  width: 320px;
+}
+.geoloacation{
+  position: absolute;
+  top: 200px;
+  right:100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.day1-weekday{
+  font-size: 30px;
+}
+.day2-weekday{
+  font-size: 30px;
+}
+.day3-weekday{
+  font-size: 30px;
+}
+.day1-temperature{
+  font-size: 45px;
+}
+.day2-temperature{
+  font-size: 45px;
+}
+.day3-temperature{
+  font-size: 45px;
+}
+.coordinates{
+  font-size: 30px;
+}
