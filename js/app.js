@@ -1,21 +1,39 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
-// eslint-disable-next-line import/extensions
-import { convertToFahrenheit, convertToCelsius } from './conversion.js';
 /* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-destructuring */
 
-let long; let lat; let key; let country; let region; let iconID; let temp;
-let windSpeed; let humidity; let timeOfDay;
-let tomorrow; let tomorrowTempDegrees; let dayAfterTomorow;
-let dayAfterTomorowDegrees; let twoDaysLater; let season;
-let twoDaysLaterDegrees; let dayOfWeek; let dayOfMonth; let month;
-let hours; let minutes; let tempFeels; let marker; let mymap;
+// eslint-disable-next-line import/extensions
+import { convertToFahrenheit, convertToCelsius } from './conversion.js';
+
+let long;
+let lat;
+let key;
+let country;
+let region;
+let iconID;
+let temp;
+let windSpeed;
+let humidity;
+let timeOfDay;
+let tomorrow;
+let tomorrowTempDegrees;
+let dayAfterTomorow;
+let dayAfterTomorowDegrees;
+let twoDaysLater;
+let season;
+let twoDaysLaterDegrees;
+let dayOfWeek;
+let dayOfMonth;
+let month;
+let hours;
+let minutes;
+let tempFeels;
+let marker;
+let mymap;
 let description;
 let currentDate = new Date();
-
 
 const tempaeraturDescription = document.querySelector('.temperature-description-general');
 const tempaeraturDescriptionFeelsLike = document.querySelector('.temperature-description-feels-like');
@@ -52,20 +70,20 @@ const currentPostion = document.querySelector('.coordinates');
 
 function getMonthName(dateObj) {
   const number = dateObj.getMonth();
-  const abbr = {
-    0: ['January', 'Styczeń'],
-    1: ['February', 'Luty'],
-    2: ['March', 'Marzec'],
-    3: ['April', 'Kwiecień'],
-    4: ['May', 'Maj'],
-    5: ['June', 'Czerwiec'],
-    6: ['July', 'Lipiec'],
-    7: ['August', 'Sierpień'],
-    8: ['September', 'Wrzesień'],
-    9: ['October', 'Październik'],
-    10: ['November', 'Listopad'],
-    11: ['December', 'Grudzień'],
-  };
+  const abbr = [
+    ['January', 'Styczeń'],
+    ['February', 'Luty'],
+    ['March', 'Marzec'],
+    ['April', 'Kwiecień'],
+    ['May', 'Maj'],
+    ['June', 'Czerwiec'],
+    ['July', 'Lipiec'],
+    ['August', 'Sierpień'],
+    ['September', 'Wrzesień'],
+    ['October', 'Październik'],
+    ['November', 'Listopad'],
+    ['December', 'Grudzień'],
+  ];
   if (tempaeraturDescription.textContent.slice(0, 2) === 'Og') {
     month = abbr[number][1];
     return abbr[number][1];
@@ -73,17 +91,18 @@ function getMonthName(dateObj) {
   month = abbr[number][0];
   return abbr[number][0];
 }
+
 function getDayOfweek(dateObj) {
   const number = dateObj.getDay();
-  const abbr = {
-    0: ['Su.', 'Nd.'],
-    1: ['Mo.', 'Pn.'],
-    2: ['Tu.', 'Wt.'],
-    3: ['We.', 'Śr.'],
-    4: ['Th.', 'Czw.'],
-    5: ['Fr.', 'Pt.'],
-    6: ['Sa.', 'So.'],
-  };
+  const abbr = [
+    ['Su.', 'Nd.'],
+    ['Mo.', 'Pn.'],
+    ['Tu.', 'Wt.'],
+    ['We.', 'Śr.'],
+    ['Th.', 'Czw.'],
+    ['Fr.', 'Pt.'],
+    ['Sa.', 'So.'],
+  ];
   if (tempaeraturDescription.textContent.slice(0, 2) === 'Og') {
     dayOfWeek = abbr[number][1];
     return abbr[number][1];
@@ -91,6 +110,7 @@ function getDayOfweek(dateObj) {
   dayOfWeek = abbr[number][0];
   return abbr[number][0];
 }
+
 function generateDate(dateObj) {
   dayOfWeek = getDayOfweek(dateObj);
   dayOfMonth = dateObj.getDate();
@@ -98,6 +118,7 @@ function generateDate(dateObj) {
   hours = dateObj.getHours();
   minutes = dateObj.getMinutes();
 }
+
 function futureDays(abbr) {
   switch (abbr) {
     case 'Su.':
@@ -173,6 +194,7 @@ function futureDays(abbr) {
     default:
   }
 }
+
 function getTimeOfDay(dateObj) {
   if (dateObj.getHours() > 5 && dateObj.getHours() < 9) {
     timeOfDay = 'sunrise';
@@ -187,6 +209,7 @@ function getTimeOfDay(dateObj) {
   timeOfDay = 'night';
   return timeOfDay;
 }
+
 function changeLanguage() {
   if (tempaeraturDescription.textContent.slice(0, 3) === 'Gen') {
     tempaeraturDescription.textContent = `Ogólnie ${description}`;
@@ -224,10 +247,6 @@ function generateMap(latitude, longitude) {
   tiles.addTo(mymap);
 }
 
-// function feelsLike(fDegrees) {
-// return tempaeraturDescriptionFeelsLike.textContent =`Feels Like:${convertToCelsius(fDegrees)} C`;
-// }
-
 function getSeason(dateObj) {
   if (dateObj.getMonth() >= 2 && dateObj.getMonth() < 5) {
     season = 'Spring';
@@ -239,26 +258,31 @@ function getSeason(dateObj) {
     season = 'Winter';
   }
 }
-generateDate(currentDate);
-futureDays(dayOfWeek);
-getTimeOfDay(currentDate);
-getSeason(currentDate);
 
 function adjustTime() {
   presentTime.textContent = `${hours}:${minutes}`;
   presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
   console.log(`${hours}:${minutes}`);
 }
+
+// Setting time
+
+generateDate(currentDate);
+futureDays(dayOfWeek);
+getTimeOfDay(currentDate);
+getSeason(currentDate);
 adjustTime();
+
 changeDegreesButton.addEventListener('click', changeDegrees);
 
-
 changeLanguageButton.addEventListener('click', changeLanguage);
+
 changeBackgroundButton.addEventListener('click', () => {
   const allbackground = ['01d', '01n', '02d', '02n', '03d', '03n', '04d', '04n', '09d', '09n', '10d', '10n', '11d', '11n', '13d', '13n', '50d', '50n'];
   const item = allbackground[Math.floor(Math.random() * allbackground.length)];
   document.body.style.backgroundImage = `url(background/${item}.jpg)`;
 });
+
 // Input field
 
 submitButton.addEventListener('click', () => {
@@ -266,7 +290,6 @@ submitButton.addEventListener('click', () => {
     .then((response) => response.json())
     .then((data) => parseDataSearch(data));
 });
-
 
 function parseDataSearch(data) {
   lat = data.city.coord.lat;
@@ -280,7 +303,6 @@ function parseDataSearch(data) {
   month = getMonthName(localTime);
   hours = localTime.getHours();
   minutes = localTime.getMinutes();
-
 
   presentTime.textContent = `${hours}:${minutes}`;
   presentDate.textContent = `${dayOfWeek} ${dayOfMonth} ${month}`;
@@ -317,10 +339,10 @@ function parseDataSearch(data) {
   twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.list[24].weather[0].icon}.png"/>`;
   twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
 
-
   marker.setLatLng([lat, long]);
   currentPostion.innerHTML = `Longitude: ${Math.round(long)}" ${Math.abs(Math.floor((long % 1) * 100))}'<br> Latitude: ${Math.round(lat)}"${Math.abs(Math.floor((lat % 1) * 100))}'`;
 }
+
 function parseDataStart(data) {
   temp = data.main.temp;
   description = data.weather[0].description;
@@ -329,7 +351,6 @@ function parseDataStart(data) {
   country = data.sys.country;
   region = data.name;
   iconID = data.weather[0].icon;
-
 
   iconElement.innerHTML = `<img src="./icons/${iconID}.png"/>`;
   temperaturDegree.textContent = convertToCelsius(temp);
@@ -345,6 +366,7 @@ function parseDataStart(data) {
   generateMap(long, lat);
   return description;
 }
+
 function parseForecast(data) {
   tomorrowWeekday.innerHTML = tomorrow;
   tomorrowTempDegrees = data.daily[1].temp.day;
@@ -359,7 +381,6 @@ function parseForecast(data) {
   twoDaysLaterIcon.innerHTML = `<img src="./icons/${data.daily[3].weather[0].icon}.png"/>`;
   twoDaysLaterTemperature.innerHTML = `${convertToCelsius(twoDaysLaterDegrees)}`;
 }
-
 
 function changeDegrees() {
   if (temperatureSpan.textContent === 'Farenheit') {
@@ -405,7 +426,6 @@ if (navigator.geolocation) {
     fetch(dailyApi)
       .then((response) => response.json())
       .then((data) => parseForecast(data));
-
 
     // .then(fetch(flickerApi)
     //   .then((response) => response.json())
