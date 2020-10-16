@@ -1,8 +1,6 @@
-fancy-weather
-Task description
+# Allow Geolocation at the Start ;)
 
-Implement a weather app (weather forecast).
-Application structure
+or you can type in the city in search panel
 
 The application consists of 4 functional units.
 
